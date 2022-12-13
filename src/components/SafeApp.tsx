@@ -24,7 +24,7 @@ import { translateTransactions } from '../services/interchain';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();
-  const { originAddress, remote, remoteAddress, app, setIsAppLoading } = useContext(AppContext);
+  const { origin, originAddress, remote, remoteAddress, app, setIsAppLoading } = useContext(AppContext);
   const remoteChain = useMemo(() => getChainInfoByName(remote), [remote]);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [status, setStatus] = useState<Status>(Status.composing);
