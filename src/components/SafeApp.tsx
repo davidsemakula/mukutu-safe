@@ -9,7 +9,8 @@ import {
   RequestId,
   SafeBalances,
   SafeInfo,
-  SendTransactionRequestParams, SendTransactionsResponse,
+  SendTransactionRequestParams,
+  SendTransactionsResponse,
 } from '@gnosis.pm/safe-apps-sdk';
 import { TransactionDetails } from '@safe-global/safe-gateway-typescript-sdk';
 
@@ -19,7 +20,7 @@ import SafeAppFrame from './SafeAppFrame';
 import TransactionStatus, { Status } from './TransactionStatus';
 import { getChainInfoByName, parseSafeChainInfo, SimpleChainInfo } from '../utils/chains';
 import { isSameUrl } from '../utils/helpers';
-import { translateTransactions } from '../utils/interchain';
+import { translateTransactions } from '../services/interchain';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();

@@ -8,6 +8,10 @@ export const getInterchainAccountAddress = async (
   return originAddress;
 };
 
-export const translateTransactions = (origin: string, remote: string, txs: Array<BaseTransaction>): Array<BaseTransaction> => {
+export const translateTransactions = (
+  origin: string,
+  remote: string,
+  txs: Array<BaseTransaction>,
+): Array<BaseTransaction> => {
   return txs;
 };

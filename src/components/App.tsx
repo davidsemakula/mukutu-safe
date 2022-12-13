@@ -10,7 +10,7 @@ import Header from './Header';
 import Home from './Home';
 import SafeApp from './SafeApp';
 import { getChainInfoById, getDefaultRemoteChain, SimpleChainInfo } from '../utils/chains';
-import { getInterchainAccountAddress } from '../utils/interchain';
+import { getInterchainAccountAddress } from '../services/interchain';
 
 export default function App(): React.ReactElement {
   const { connected, safe } = useSafeAppsSDK();

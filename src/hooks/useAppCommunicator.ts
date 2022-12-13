@@ -35,10 +35,10 @@ type JsonRpcResponse = {
 };
 
 export type SafePermissionsRequest = {
-  origin: string
-  requestId: string
-  request: PermissionRequest[]
-}
+  origin: string;
+  requestId: string;
+  request: PermissionRequest[];
+};
 
 export type UseAppCommunicatorHandlers = {
   onConfirmTransactions: (txs: BaseTransaction[], requestId: RequestId, params?: SendTransactionRequestParams) => void;
