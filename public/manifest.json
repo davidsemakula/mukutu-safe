@@ -1,7 +1,7 @@
 {
-  "short_name": "Safe App",
-  "name": "Gnosis Safe App Starter",
-  "description": "Describe your Safe App here",
+  "short_name": "Interchain Router",
+  "name": "Safe Interchain Router",
+  "description": "Manage assets and interact with dApps on multiple chains from one Safe account.",
   "icons": [
     {
       "src": "logo.svg",
