@@ -103,7 +103,7 @@ export default function Header() {
             sx={{ display: { xs: 'none', sm: 'block' }, mr: 2, ':hover': { cursor: 'pointer' } }}
             onClick={goHome}
           >
-            Safe Interchain Router
+            Safe Hyperlane Router
           </Typography>
           <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
           <Box role="presentation">

@@ -1,7 +1,7 @@
 {
-  "short_name": "Interchain Router",
-  "name": "Safe Interchain Router",
-  "description": "Manage assets and interact with dApps on multiple chains from one Safe account.",
+  "short_name": "Hyperlane Router",
+  "name": "Safe Hyperlane Router",
+  "description": "Manage assets and interact with dApps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
   "icons": [
     {
       "src": "logo.svg",
