@@ -1,5 +1,5 @@
-import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
-import {useSafeAppsSDK} from '@gnosis.pm/safe-apps-react-sdk';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
 import {
   BaseTransaction,
   ChainInfo,
@@ -12,15 +12,15 @@ import {
   SendTransactionRequestParams,
   SendTransactionsResponse,
 } from '@gnosis.pm/safe-apps-sdk';
-import {TransactionDetails} from '@safe-global/safe-gateway-typescript-sdk';
+import { TransactionDetails } from '@safe-global/safe-gateway-typescript-sdk';
 
 import AppContext from '../context/AppContext';
-import useAppCommunicator, {UseAppCommunicatorHandlers} from '../hooks/useAppCommunicator';
+import useAppCommunicator, { UseAppCommunicatorHandlers } from '../hooks/useAppCommunicator';
 import SafeAppFrame from './SafeAppFrame';
-import TransactionStatus, {Status} from './TransactionStatus';
-import {getChainInfoByName, parseSafeChainInfo, SimpleChainInfo} from '../utils/chains';
-import {isSameUrl} from '../utils/helpers';
-import {isTransactionBatchSupported, translateTransactions} from '../services/interchain';
+import TransactionStatus, { Status } from './TransactionStatus';
+import { getChainInfoByName, parseSafeChainInfo, SimpleChainInfo } from '../utils/chains';
+import { isSameUrl } from '../utils/helpers';
+import { isTransactionBatchSupported, translateTransactions } from '../services/interchain';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();
@@ -28,7 +28,17 @@ export default function SafeApp(): React.ReactElement {
   const remoteChain = useMemo(() => getChainInfoByName(remote), [remote]);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [status, setStatus] = useState<Status>(Status.composing);
+  const [lastSafeTxHash, setLastSafeTxHash] = useState<string>('');
   const [lastTxHash, setLastTxHash] = useState<string>('');
+  const txHashTimerRef = useRef<NodeJS.Timeout>();
+  const txHashTimerTries = useRef<number>(0);
+
+  const clearTxHashTimer = () => {
+    if (txHashTimerRef.current) {
+      clearInterval(txHashTimerRef.current);
+    }
+    txHashTimerTries.current = 0;
+  };
 
   const communicator = useAppCommunicator(iframeRef, app, remoteChain, {
     onConfirmTransactions: async (
@@ -37,7 +47,9 @@ export default function SafeApp(): React.ReactElement {
       params?: SendTransactionRequestParams,
     ) => {
       setStatus(Status.initiating);
+      setLastSafeTxHash('');
       setLastTxHash('');
+      clearTxHashTimer();
 
       if (isTransactionBatchSupported(txs)) {
         try {
@@ -47,9 +59,7 @@ export default function SafeApp(): React.ReactElement {
           });
           communicator?.send({ safeTxHash }, requestId, false);
           setStatus(Status.completed);
-
-          const safeTx = await sdk.txs.getBySafeTxHash(safeTxHash);
-          setLastTxHash(safeTx?.txHash ?? '');
+          setLastSafeTxHash(safeTxHash);
         } catch (e) {
           communicator?.send(e, requestId, true);
           setStatus(Status.canceled);
@@ -107,6 +117,27 @@ export default function SafeApp(): React.ReactElement {
     }
     setIsAppLoading(false);
   }, [app?.url, iframeRef, setIsAppLoading]);
+
+  useEffect(() => {
+    if (lastSafeTxHash && !lastTxHash) {
+      txHashTimerRef.current = setInterval(() => {
+        txHashTimerTries.current++;
+        if (txHashTimerTries.current <= 30) {
+          sdk.txs.getBySafeTxHash(lastSafeTxHash).then((safeTx) => {
+            if (safeTx?.txHash) {
+              setLastTxHash(safeTx.txHash);
+              clearTxHashTimer();
+            }
+          });
+        } else {
+          clearTxHashTimer();
+        }
+      }, 2000);
+    }
+    return () => {
+      clearTxHashTimer();
+    };
+  }, [lastSafeTxHash, lastTxHash, sdk.txs]);
 
   return (
     <>
