@@ -4,8 +4,29 @@ import { BaseTransaction } from '@gnosis.pm/safe-apps-sdk';
 
 import { allChains, ChainName, ChainType, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
 
+const SUPPORTED_CHAINS: Array<string> = [
+  // Testnet
+  ChainName.alfajores,
+  ChainName.arbitrumgoerli,
+  ChainName.bsctestnet,
+  ChainName.fuji,
+  ChainName.goerli,
+  ChainName.moonbasealpha,
+  ChainName.mumbai,
+  ChainName.optimism,
+  // Mainnet
+  ChainName.arbitrum,
+  ChainName.avalanche,
+  ChainName.bsc,
+  ChainName.celo,
+  ChainName.ethereum,
+  ChainName.optimism,
+  ChainName.moonbeam,
+  ChainName.polygon,
+];
+
 export const getSupportedChains = (): Array<SimpleChainInfo> => {
-  return allChains;
+  return allChains.filter((chain) => SUPPORTED_CHAINS.includes(chain.name));
 };
 
 export const getDefaultRemoteChain = (origin?: string): string => {
