@@ -2,10 +2,21 @@ import * as ethers from 'ethers';
 import { ChainNameToDomainId, hyperlaneCoreAddresses } from '@hyperlane-xyz/sdk';
 import { BaseTransaction } from '@gnosis.pm/safe-apps-sdk';
 
-import { allChains, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
+import { allChains, ChainName, ChainType, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
 
 export const getSupportedChains = (): Array<SimpleChainInfo> => {
   return allChains;
+};
+
+export const getDefaultRemoteChain = (origin?: string): string => {
+  if (origin) {
+    const originType = getChainInfoByName(origin)?.type;
+    if (originType === ChainType.TESTNET) {
+      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.mumbai;
+    }
+    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.polygon;
+  }
+  return '';
 };
 
 const getRouterAddress = (origin: string): string => {
