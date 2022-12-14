@@ -2,7 +2,11 @@ import * as ethers from 'ethers';
 import { ChainNameToDomainId, hyperlaneCoreAddresses } from '@hyperlane-xyz/sdk';
 import { BaseTransaction } from '@gnosis.pm/safe-apps-sdk';
 
-import { getChainInfoByName } from '../utils/chains';
+import { allChains, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
+
+export const getSupportedChains = (): Array<SimpleChainInfo> => {
+  return allChains;
+};
 
 const getRouterAddress = (origin: string): string => {
   return hyperlaneCoreAddresses[origin]?.interchainAccountRouter;

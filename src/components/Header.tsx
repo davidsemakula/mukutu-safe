@@ -18,7 +18,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import AppContext from '../context/AppContext';
 import LogoIcon from '../icons/Logo';
 import { truncateAddress } from '../utils/helpers';
-import { allChains, getChainDisplayName, getChainInfoByName } from '../utils/chains';
+import { getChainDisplayName, getChainInfoByName } from '../utils/chains';
+import { getSupportedChains } from '../services/interchain';
 
 const StyledSelect = styled(Select)(({ theme }) => ({
   color: 'inherit',
@@ -62,7 +63,7 @@ export default function Header() {
   const { origin, originAddress, remote, remoteAddress, app, setRemote, setApp } = useContext(AppContext);
   const originType = useMemo(() => getChainInfoByName(origin)?.type, [origin]);
   const selectableChains = useMemo(
-    () => allChains.filter((chain) => chain.name !== origin && chain.type === originType),
+    () => getSupportedChains().filter((chain) => chain.name !== origin && chain.type === originType),
     [origin, originType],
   );
   const [clipboard, setClipboard] = useState('');
