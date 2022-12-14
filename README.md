@@ -56,8 +56,9 @@ yarn start
 #### Add Custom App to Safe
 
 - Open your Safe app locally (by default via http://localhost:3000/).
-- Go to the [Safe web interface](https://app.safe.global/)
+- Go to the Safe web interface at [https://gnosis-safe.io/](https://gnosis-safe.io/) or [https://app.safe.global/](https://app.safe.global/)
 - Create your test safe
 - Go to Apps -> Manage Apps -> Add Custom App
 - Paste your localhost URL, default is http://localhost:3000/
 - You should see "Safe Hyperlane Router" as a new app
+- Install the app and try out some interchain transactions on supported remote chains
