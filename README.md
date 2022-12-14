@@ -33,9 +33,7 @@ hello@davidsemakula.com
 
 
 ## Video Demo
-[Insert Video Link here]()
-
-[//]: # (TODO: @david Add video link)
+[https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?](https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?)
 
 ## Instructions
 
