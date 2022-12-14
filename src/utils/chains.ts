@@ -1,11 +1,13 @@
 import { ChainInfo } from '@gnosis.pm/safe-apps-sdk';
 import _ from 'lodash';
 
-export enum ChainNames {
+export enum ChainName {
   // Testnet
   alfajores = 'alfajores',
   arbitrumgoerli = 'arbitrumgoerli',
+  auroratestnet = 'auroratestnet',
   bsctestnet = 'bsctestnet',
+  fantomtestnet = 'fantomtestnet',
   fuji = 'fuji',
   goerli = 'goerli',
   moonbasealpha = 'moonbasealpha',
@@ -14,10 +16,12 @@ export enum ChainNames {
 
   // Mainnet
   arbitrum = 'arbitrum',
+  aurora = 'aurora',
   avalanche = 'avalanche',
   bsc = 'bsc',
   celo = 'celo',
   ethereum = 'ethereum',
+  fantom = 'fantom',
   optimism = 'optimism',
   moonbeam = 'moonbeam',
   polygon = 'polygon',
@@ -29,7 +33,7 @@ export enum ChainType {
 }
 
 export type SimpleChainInfo = {
-  name: string;
+  name: ChainName;
   id: number;
   rpcUrl: string;
   blockExplorerUrl: string;
@@ -44,25 +48,36 @@ export type SimpleChainInfo = {
 export const allChains: Array<SimpleChainInfo> = [
   // Testnet
   {
-    name: ChainNames.alfajores,
+    name: ChainName.alfajores,
     id: 44787,
     rpcUrl: 'https://alfajores-forno.celo-testnet.org',
     blockExplorerUrl: 'https://alfajores.celoscan.io',
     symbol: 'CELO',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.celo],
+    relatedTo: [ChainName.celo],
   },
   {
-    name: ChainNames.arbitrumgoerli,
+    name: ChainName.arbitrumgoerli,
     id: 421613,
     rpcUrl: 'https://goerli-rollup.arbitrum.io/rpc',
     blockExplorerUrl: 'https://goerli.arbiscan.io',
     symbol: 'AETH',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.arbitrum],
+    relatedTo: [ChainName.arbitrum],
   },
   {
-    name: ChainNames.bsctestnet,
+    name: ChainName.auroratestnet,
+    id: 1313161555,
+    rpcUrl: 'https://testnet.aurora.dev',
+    blockExplorerUrl: 'https://testnet.aurorascan.dev/',
+    symbol: 'Aurora ETH',
+    shortName: 'aurora',
+    currency: 'ETH',
+    type: ChainType.TESTNET,
+    relatedTo: [ChainName.aurora],
+  },
+  {
+    name: ChainName.bsctestnet,
     id: 97,
     rpcUrl: 'https://data-seed-prebsc-1-s3.binance.org:8545',
     blockExplorerUrl: 'https://testnet.bscscan.com',
@@ -70,10 +85,21 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'bnb',
     currency: 'BNB',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.bsc],
+    relatedTo: [ChainName.bsc],
   },
   {
-    name: ChainNames.fuji,
+    name: ChainName.fantomtestnet,
+    id: 4002,
+    rpcUrl: 'https://rpc.ankr.com/fantom_testnet/',
+    blockExplorerUrl: 'https://testnet.ftmscan.com/',
+    symbol: 'FTM',
+    shortName: 'fantom',
+    currency: 'FTM',
+    type: ChainType.TESTNET,
+    relatedTo: [ChainName.fantom],
+  },
+  {
+    name: ChainName.fuji,
     id: 43113,
     rpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
     blockExplorerUrl: 'https://testnet.snowtrace.io',
@@ -81,10 +107,10 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'avax',
     currency: 'Avalanche',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.avalanche],
+    relatedTo: [ChainName.avalanche],
   },
   {
-    name: ChainNames.goerli,
+    name: ChainName.goerli,
     id: 5,
     rpcUrl: 'https://rpc.ankr.com/eth_goerli',
     blockExplorerUrl: 'https://goerli.etherscan.io/',
@@ -92,20 +118,20 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'gor',
     currency: 'Görli Ether',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.ethereum],
+    relatedTo: [ChainName.ethereum],
   },
   {
-    name: ChainNames.moonbasealpha,
+    name: ChainName.moonbasealpha,
     id: 1287,
     rpcUrl: 'https://rpc.api.moonbase.moonbeam.network',
     blockExplorerUrl: 'https://moonbase.moonscan.io/',
     symbol: 'DEV',
     shortName: 'mbase',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.moonbeam],
+    relatedTo: [ChainName.moonbeam],
   },
   {
-    name: ChainNames.mumbai,
+    name: ChainName.mumbai,
     id: 80001,
     rpcUrl: 'https://rpc-mumbai.maticvigil.com',
     blockExplorerUrl: 'https://mumbai.polygonscan.com',
@@ -113,21 +139,21 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'matic',
     currency: 'Matic',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.polygon],
+    relatedTo: [ChainName.polygon],
   },
   {
-    name: ChainNames.optimismgoerli,
+    name: ChainName.optimismgoerli,
     id: 420,
     rpcUrl: 'https://goerli.optimism.io',
     blockExplorerUrl: 'https://goerli-optimism.etherscan.io/',
     symbol: 'OP',
     type: ChainType.TESTNET,
-    relatedTo: [ChainNames.optimism],
+    relatedTo: [ChainName.optimism],
   },
 
   // Mainnet
   {
-    name: ChainNames.arbitrum,
+    name: ChainName.arbitrum,
     id: 42161,
     rpcUrl: 'https://arb1.arbitrum.io/rpc',
     blockExplorerUrl: 'https://arbiscan.io',
@@ -135,10 +161,21 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'arb1',
     currency: 'AETH',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.arbitrumgoerli],
+    relatedTo: [ChainName.arbitrumgoerli],
   },
   {
-    name: ChainNames.avalanche,
+    name: ChainName.aurora,
+    id: 1313161554,
+    rpcUrl: 'https://mainnet.aurora.dev',
+    blockExplorerUrl: 'https://aurorascan.dev/',
+    symbol: 'Aurora ETH',
+    shortName: 'aurora',
+    currency: 'Aurora ETH',
+    type: ChainType.MAINNET,
+    relatedTo: [ChainName.auroratestnet],
+  },
+  {
+    name: ChainName.avalanche,
     id: 43114,
     rpcUrl: 'https://api.avax.network/ext/bc/C/rpc',
     blockExplorerUrl: 'https://snowtrace.io',
@@ -146,10 +183,10 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'avax',
     currency: 'Avalanche',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.fuji],
+    relatedTo: [ChainName.fuji],
   },
   {
-    name: ChainNames.bsc,
+    name: ChainName.bsc,
     id: 56,
     rpcUrl: 'https://rpc.ankr.com/bsc',
     blockExplorerUrl: 'https://bscscan.com',
@@ -157,19 +194,19 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'bnb',
     currency: 'BNB',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.bsctestnet],
+    relatedTo: [ChainName.bsctestnet],
   },
   {
-    name: ChainNames.celo,
+    name: ChainName.celo,
     id: 42220,
     rpcUrl: 'https://forno.celo.org',
     blockExplorerUrl: 'https://celoscan.io',
     symbol: 'CELO',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.alfajores],
+    relatedTo: [ChainName.alfajores],
   },
   {
-    name: ChainNames.ethereum,
+    name: ChainName.ethereum,
     id: 1,
     rpcUrl: 'https://cloudflare-eth.com',
     blockExplorerUrl: 'https://etherscan.io',
@@ -177,30 +214,41 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'eth',
     currency: 'Ether',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.goerli],
+    relatedTo: [ChainName.goerli],
   },
   {
-    name: ChainNames.optimism,
+    name: ChainName.fantom,
+    id: 250,
+    rpcUrl: 'https://rpc.ftm.tools/',
+    blockExplorerUrl: 'https://ftmscan.com',
+    symbol: 'FTM',
+    shortName: 'fantom',
+    currency: 'FTM',
+    type: ChainType.MAINNET,
+    relatedTo: [ChainName.fantomtestnet],
+  },
+  {
+    name: ChainName.optimism,
     id: 10,
     rpcUrl: 'https://mainnet.optimism.io',
     blockExplorerUrl: 'https://optimistic.etherscan.io',
     symbol: 'OP',
     shortName: 'oeth',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.optimismgoerli],
+    relatedTo: [ChainName.optimismgoerli],
   },
   {
-    name: ChainNames.moonbeam,
+    name: ChainName.moonbeam,
     id: 1284,
     rpcUrl: 'https://rpc.api.moonbeam.network',
     blockExplorerUrl: 'https://moonscan.io/',
     symbol: 'GLMR',
     shortName: 'mbeam',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.moonbasealpha],
+    relatedTo: [ChainName.moonbasealpha],
   },
   {
-    name: ChainNames.polygon,
+    name: ChainName.polygon,
     id: 137,
     rpcUrl: 'https://rpc-mainnet.matic.quiknode.pro',
     blockExplorerUrl: 'https://polygonscan.com',
@@ -208,7 +256,7 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'matic',
     currency: 'Matic',
     type: ChainType.MAINNET,
-    relatedTo: [ChainNames.mumbai],
+    relatedTo: [ChainName.mumbai],
   },
 ];
 
@@ -218,17 +266,6 @@ export const getChainInfoById = (chainId: string | number): SimpleChainInfo | un
 
 export const getChainInfoByName = (chainName: string): SimpleChainInfo | undefined => {
   return allChains.find((chain) => (chainName || '').toString() === (chain.name || '').toString());
-};
-
-export const getDefaultRemoteChain = (origin?: string): string => {
-  if (origin) {
-    const originType = getChainInfoByName(origin)?.type;
-    if (originType === ChainType.TESTNET) {
-      return origin !== ChainNames.goerli ? ChainNames.goerli : ChainNames.fuji;
-    }
-    return origin !== ChainNames.ethereum ? ChainNames.ethereum : ChainNames.avalanche;
-  }
-  return '';
 };
 
 export const parseSafeChainInfo = (chain: SimpleChainInfo): ChainInfo => {
