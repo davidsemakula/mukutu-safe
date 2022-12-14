@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
+import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from 'react';
+import {useSafeAppsSDK} from '@gnosis.pm/safe-apps-react-sdk';
 import {
   BaseTransaction,
   ChainInfo,
@@ -12,15 +12,15 @@ import {
   SendTransactionRequestParams,
   SendTransactionsResponse,
 } from '@gnosis.pm/safe-apps-sdk';
-import { TransactionDetails } from '@safe-global/safe-gateway-typescript-sdk';
+import {TransactionDetails} from '@safe-global/safe-gateway-typescript-sdk';
 
 import AppContext from '../context/AppContext';
-import useAppCommunicator, { UseAppCommunicatorHandlers } from '../hooks/useAppCommunicator';
+import useAppCommunicator, {UseAppCommunicatorHandlers} from '../hooks/useAppCommunicator';
 import SafeAppFrame from './SafeAppFrame';
-import TransactionStatus, { Status } from './TransactionStatus';
-import { getChainInfoByName, parseSafeChainInfo, SimpleChainInfo } from '../utils/chains';
-import { isSameUrl } from '../utils/helpers';
-import { isTransactionBatchSupported, translateTransactions } from '../services/interchain';
+import TransactionStatus, {Status} from './TransactionStatus';
+import {getChainInfoByName, parseSafeChainInfo, SimpleChainInfo} from '../utils/chains';
+import {isSameUrl} from '../utils/helpers';
+import {isTransactionBatchSupported, translateTransactions} from '../services/interchain';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();
@@ -28,6 +28,7 @@ export default function SafeApp(): React.ReactElement {
   const remoteChain = useMemo(() => getChainInfoByName(remote), [remote]);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [status, setStatus] = useState<Status>(Status.composing);
+  const [lastTxHash, setLastTxHash] = useState<string>('');
 
   const communicator = useAppCommunicator(iframeRef, app, remoteChain, {
     onConfirmTransactions: async (
@@ -36,6 +37,7 @@ export default function SafeApp(): React.ReactElement {
       params?: SendTransactionRequestParams,
     ) => {
       setStatus(Status.initiating);
+      setLastTxHash('');
 
       if (isTransactionBatchSupported(txs)) {
         try {
@@ -45,6 +47,9 @@ export default function SafeApp(): React.ReactElement {
           });
           communicator?.send({ safeTxHash }, requestId, false);
           setStatus(Status.completed);
+
+          const safeTx = await sdk.txs.getBySafeTxHash(safeTxHash);
+          setLastTxHash(safeTx?.txHash ?? '');
         } catch (e) {
           communicator?.send(e, requestId, true);
           setStatus(Status.canceled);
@@ -105,7 +110,9 @@ export default function SafeApp(): React.ReactElement {
 
   return (
     <>
-      {status && status !== Status.composing ? <TransactionStatus status={status} setStatus={setStatus} /> : null}
+      {status && status !== Status.composing ? (
+        <TransactionStatus status={status} setStatus={setStatus} txHash={lastTxHash} />
+      ) : null}
       {app?.url ? (
         <SafeAppFrame
           appUrl={app.url}
