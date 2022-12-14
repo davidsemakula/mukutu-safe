@@ -40,3 +40,15 @@ export const translateTransactions = (
 ): Array<BaseTransaction> => {
   return txs;
 };
+
+export const getOriginExplorerUrl = (origin: string, txHash: string) => {
+  const chain = getChainInfoByName(origin);
+  if (chain?.blockExplorerUrl) {
+    return `${chain.blockExplorerUrl}${/\/$/.test(chain.blockExplorerUrl) ? '' : '/'}tx/${txHash}`;
+  }
+  return '';
+};
+
+export const getInterchainExplorerUrl = (origin: string, remote: string, txHash: string) => {
+  return txHash ? getOriginExplorerUrl(origin, txHash) : '';
+};
