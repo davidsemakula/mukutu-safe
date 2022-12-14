@@ -90,7 +90,6 @@ export default function TransactionStatus({
           );
         }
       }
-
       break;
     }
     case Status.failed: {
