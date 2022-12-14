@@ -116,5 +116,5 @@ export const getOriginExplorerUrl = (origin: string, txHash: string) => {
 };
 
 export const getInterchainExplorerUrl = (origin: string, remote: string, txHash: string) => {
-  return txHash ? getOriginExplorerUrl(origin, txHash) : '';
+  return txHash ? `https://explorer.hyperlane.xyz/?search=${txHash}` || getOriginExplorerUrl(origin, txHash) : '';
 };
