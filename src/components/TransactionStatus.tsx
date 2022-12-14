@@ -16,6 +16,7 @@ export enum Status {
   canceled = 'canceled',
   completed = 'completed',
   failed = 'failed',
+  unsupported = 'unsupported',
 }
 
 export type TransactionStatusProps = {
@@ -66,6 +67,16 @@ export default function TransactionStatus({ status, setStatus }: TransactionStat
     case Status.failed: {
       message = 'Transaction submission failed.';
       icon = <ErrorIcon color="error" fontSize="large" />;
+      positiveFn = tryAgain;
+      positiveMsg = 'Try again';
+      negativeFn = goHome;
+      negativeMsg = 'Cancel';
+      break;
+    }
+    case Status.unsupported: {
+      message =
+        'Transactions that require transfer of native tokens from remote Interchain Accounts are not yet supported.';
+      icon = <CancelIcon color="error" fontSize="large" />;
       positiveFn = tryAgain;
       positiveMsg = 'Try again';
       negativeFn = goHome;

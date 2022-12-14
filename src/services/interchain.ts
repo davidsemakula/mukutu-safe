@@ -71,6 +71,14 @@ export const getInterchainAccountAddress = async (
   return '';
 };
 
+export const isTransactionSupported = (tx: BaseTransaction): boolean => {
+  return ['0', 0, null, undefined].includes(tx.value);
+};
+
+export const isTransactionBatchSupported = (txs: Array<BaseTransaction>): boolean => {
+  return txs.filter((tx) => !isTransactionSupported(tx)).length === 0;
+};
+
 export const translateTransactions = (
   origin: string,
   remote: string,

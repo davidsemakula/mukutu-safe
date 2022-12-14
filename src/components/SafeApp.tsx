@@ -20,7 +20,7 @@ import SafeAppFrame from './SafeAppFrame';
 import TransactionStatus, { Status } from './TransactionStatus';
 import { getChainInfoByName, parseSafeChainInfo, SimpleChainInfo } from '../utils/chains';
 import { isSameUrl } from '../utils/helpers';
-import { translateTransactions } from '../services/interchain';
+import { isTransactionBatchSupported, translateTransactions } from '../services/interchain';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();
@@ -37,16 +37,21 @@ export default function SafeApp(): React.ReactElement {
     ) => {
       setStatus(Status.initiating);
 
-      try {
-        const { safeTxHash } = await sdk.txs.send({
-          txs: translateTransactions(origin, remote, txs),
-          params,
-        });
-        communicator?.send({ safeTxHash }, requestId, false);
-        setStatus(Status.completed);
-      } catch (e) {
-        communicator?.send(e, requestId, true);
-        setStatus(Status.canceled);
+      if (isTransactionBatchSupported(txs)) {
+        try {
+          const { safeTxHash } = await sdk.txs.send({
+            txs: translateTransactions(origin, remote, txs),
+            params,
+          });
+          communicator?.send({ safeTxHash }, requestId, false);
+          setStatus(Status.completed);
+        } catch (e) {
+          communicator?.send(e, requestId, true);
+          setStatus(Status.canceled);
+        }
+      } else {
+        communicator?.send('Unsupported transaction type', requestId, true);
+        setStatus(Status.unsupported);
       }
     },
     onSignMessage: async (
