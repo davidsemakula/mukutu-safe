@@ -1,5 +1,11 @@
 import { BaseTransaction } from '@gnosis.pm/safe-apps-sdk';
 
+import { allChains, SimpleChainInfo } from '../utils/chains';
+
+export const getSupportedChains = (): Array<SimpleChainInfo> => {
+  return allChains;
+};
+
 export const getInterchainAccountAddress = async (
   origin: string,
   remote: string,
