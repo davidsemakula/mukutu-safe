@@ -31,6 +31,7 @@ David Semakula
 ### Email
 hello@davidsemakula.com
 
+**NOTE**: This is my first submission for this issue, the second submission is at [https://github.com/davidsemakula/hyperlane-eip-5164](https://github.com/davidsemakula/hyperlane-eip-5164)
 
 ## Video Demo
 [https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?](https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?)
