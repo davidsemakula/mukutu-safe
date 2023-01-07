@@ -1,13 +1,5 @@
 # Safe Hyperlane Router
 
-This repo contains an implementation of a [Safe App](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) for managing assets and interacting with dApps on multiple chains from one [Safe](https://app.safe.global/) account using [Hyperlane Interchain Accounts](https://docs.hyperlane.xyz/hyperlane-docs/developers/send).
-
-## Project
-
-### Name
-[Safe](https://app.safe.global/) Hyperlane Router
-
-### Description
 This project is an implementation of a [Safe App](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) for managing assets and interacting with dApps on multiple chains from one [Safe](https://app.safe.global/) account using [Hyperlane Interchain Accounts](https://docs.hyperlane.xyz/hyperlane-docs/developers/send).
 
 This app works as an intermediary between a [Safe account](https://app.safe.global/) on the origin chain and [Safe Apps](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) providing an interface to an app or asset on the remote chain.
@@ -17,28 +9,37 @@ This allows us to leverage already existing user-friendly UI/UX of Safe Apps to 
 This app then intercepts the sendTransaction call, translates it to a call to the [Hyperlane Interchain Account Router](https://docs.hyperlane.xyz/hyperlane-docs/developers/send) on the origin chain and submits it to the Safe Account for signing and processing.
 
 
-### Gitcoin Link
-[https://gitcoin.co/hackathon/illuminate/projects/17478/hyperlane-safe-app](https://gitcoin.co/hackathon/illuminate/projects/17478/hyperlane-safe-app)
+## Awards
+[🥇 Top Prize: Moonbeam Illuminate/22 Hackathon | Best use of Hyperlane](https://twitter.com/MoonbeamNetwork/status/1610738659656962048)
 
-### Gitcoin Issue
-[https://gitcoin.co/issue/29583](https://gitcoin.co/issue/29583)
+Useful links:
+ - [Moonbeam Announcement](https://twitter.com/MoonbeamNetwork/status/1610738659656962048)
+ - [Hyperlane Announcement](https://twitter.com/Hyperlane_xyz/status/1610751624300871681)
+ - [Gitcoin Hackathon](https://gitcoin.co/hackathon/illuminate/onboard)
 
-## Team
-
-### Name
-David Semakula
-
-### Email
-hello@davidsemakula.com
-
-**NOTE**: This is my first submission for this issue, the second submission is at [https://github.com/davidsemakula/hyperlane-eip-5164](https://github.com/davidsemakula/hyperlane-eip-5164)
 
 ## Video Demo
 [https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?](https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?)
 
+[The video is a bit blurry but still watchable, a higher fidelity demo will be coming soon 🙂]
+
+[Alternatively, you can try it out yourself by following the instructions below. It's super easy! 💪]
+
 ## Instructions
 
-### Development
+### For End users
+
+You can also use this if you simply don't want to run the Safe App locally
+
+- Go to the Safe web interface at [https://gnosis-safe.io/](https://gnosis-safe.io/) or [https://app.safe.global/](https://app.safe.global/)
+- Create your Safe if you don't have one already
+- Go to Apps -> Manage Apps -> Add Custom App
+- Paste the Safe App URL as https://davidsemakula.com/safe-hyperlane-router/
+- You should see "Safe Hyperlane Router" as a new app
+- Install the app and try out some interchain transactions on supported remote chains 🎉
+
+
+### For Developers
 
 #### Install dependencies
 
@@ -54,10 +55,5 @@ yarn start
 
 #### Add Custom App to Safe
 
-- Open your Safe app locally (by default via http://localhost:3000/).
-- Go to the Safe web interface at [https://gnosis-safe.io/](https://gnosis-safe.io/) or [https://app.safe.global/](https://app.safe.global/)
-- Create your test safe
-- Go to Apps -> Manage Apps -> Add Custom App
-- Paste your localhost URL, default is http://localhost:3000/
-- You should see "Safe Hyperlane Router" as a new app
-- Install the app and try out some interchain transactions on supported remote chains
+- Follow end user instructions above but use http://localhost:3000/ as the Safe App URL
+- Install the app and try out some interchain transactions on supported remote chains 🚀
