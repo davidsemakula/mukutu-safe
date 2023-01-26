@@ -75,7 +75,7 @@ export default function Header(): React.ReactElement {
             sx={{ display: { xs: 'none', sm: 'block' }, mr: 2, ':hover': { cursor: 'pointer' } }}
             onClick={goHome}
           >
-            Mukutu
+            Mukutu Safe
           </Typography>
           <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
           <Box role="presentation">

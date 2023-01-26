@@ -1,4 +1,4 @@
-# Mukutu (formerly Safe Hyperlane Router)
+# Mukutu Safe (formerly Safe Hyperlane Router)
 
 This project is an implementation of a [Safe App](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) for managing assets and interacting with dApps on multiple chains from one [Safe](https://app.safe.global/) account using [Hyperlane Interchain Accounts](https://docs.hyperlane.xyz/docs/developers/send).
 
@@ -35,7 +35,7 @@ You can also use this if you simply don't want to run the Safe App locally
 - Create your Safe if you don't have one already
 - Go to Apps -> Manage Apps -> Add Custom App
 - Paste the Safe App URL as https://davidsemakula.com/safe-hyperlane-router/
-- You should see "Mukutu" as a new app
+- You should see "Mukutu Safe" as a new app
 - Install the app and try out some interchain transactions on supported remote chains 🎉
 
 
