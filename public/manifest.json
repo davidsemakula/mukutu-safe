@@ -1,7 +1,7 @@
 {
   "short_name": "Mukutu Safe",
   "name": "Mukutu Safe",
-  "description": "Manage assets and interact with dApps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
+  "description": "Manage assets and interact with dapps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
   "icons": [
     {
       "src": "logo.svg",

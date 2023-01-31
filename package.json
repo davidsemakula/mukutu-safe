@@ -1,6 +1,6 @@
 {
   "name": "@mukutu/safe-app",
-  "description": "Manage assets and interact with dApps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
+  "description": "Manage assets and interact with dapps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
   "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "^11.10.5",
