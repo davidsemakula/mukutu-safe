@@ -34,7 +34,7 @@ You can also use this if you simply don't want to run the Safe App locally
 - Go to the Safe web interface at [https://app.safe.global/](https://app.safe.global/) or [https://gnosis-safe.io/](https://gnosis-safe.io/) or [https://moonbeam-safe.davidsemakula.com/](https://moonbeam-safe.davidsemakula.com/) for Moonbeam users (official Moonbeam Safe support will be coming soon)
 - Create your Safe if you don't have one already
 - Go to Apps -> Manage Apps -> Add Custom App
-- Paste the Safe App URL as https://davidsemakula.com/safe-hyperlane-router/
+- Paste the Safe App URL as https://safe.mukutu.tech
 - You should see "Mukutu Safe" as a new app
 - Install the app and try out some interchain transactions on supported remote chains 🎉
 
