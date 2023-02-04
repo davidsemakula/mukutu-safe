@@ -14,7 +14,7 @@ const inputGlobalStyles = (
     styles={css`
       html {
         height: 100%;
-        font-family: Averta, Roboto, 'Helvetica Neue', Arial, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+        font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
           'Droid Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       }
 

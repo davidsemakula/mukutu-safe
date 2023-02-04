@@ -43,8 +43,8 @@ export default function Home(): React.ReactElement {
       </Typography>
       {filteredApps.length ? (
         <Grid container spacing={2}>
-          {filteredApps.map((app) => (
-            <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+          {filteredApps.map((app: SafeAppData) => (
+            <Grid key={`app-${app?.id}`} xs={12} sm={6} md={4} lg={3} xl={2}>
               <SafeAppCard app={app as SafeAppData} />
             </Grid>
           ))}
