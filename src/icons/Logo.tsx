@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
-const HomeIcon = (props: SvgIconProps): React.ReactElement => {
+const LogoIcon = (props: SvgIconProps): React.ReactElement => {
   return (
     <SvgIcon viewBox="0 0 512.477 512.477" {...props}>
       <g>
@@ -39,4 +39,4 @@ const HomeIcon = (props: SvgIconProps): React.ReactElement => {
   );
 };
 
-export default HomeIcon;
+export default LogoIcon;
