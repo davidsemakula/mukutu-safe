@@ -31,7 +31,7 @@ Useful links:
 
 You can also use this if you simply don't want to run the Safe App locally
 
-- Go to the Safe web interface at [https://app.safe.global/](https://app.safe.global/) or [https://multisig.moonbeam.network/](https://multisig.moonbeam.network/) for Moonbeam users
+- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) or [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam users
 - Create your Safe if you don't have one already
 - Go to Apps -> Manage Apps -> Add Custom App
 - Paste the Safe App URL as https://safe.mukutu.tech
