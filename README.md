@@ -1,6 +1,6 @@
 # Mukutu Safe (formerly Safe Hyperlane Router)
 
-This project is an implementation of a [Safe App](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) for managing assets and interacting with smart contracts on multiple chains from one [Safe](https://app.safe.global/) account using [Hyperlane Interchain Accounts](https://docs.hyperlane.xyz/docs/developers/send).
+This project is an implementation of a [Safe App](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) for managing assets and interacting with smart contracts and dapps on multiple chains from one [Safe](https://app.safe.global/) account using [Hyperlane Interchain Accounts](https://docs.hyperlane.xyz/docs/developers/send).
 
 This app works as an intermediary between a [Safe account](https://app.safe.global/) on the origin chain and [Safe Apps](https://help.gnosis-safe.io/en/articles/4022022-what-are-safe-apps) providing an interface to an app or asset on the remote chain.
 
