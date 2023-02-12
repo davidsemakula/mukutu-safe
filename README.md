@@ -15,7 +15,7 @@ This app then intercepts the sendTransaction call, translates it to a call to th
 Useful links:
  - [Moonbeam Announcement](https://twitter.com/MoonbeamNetwork/status/1610738659656962048)
  - [Hyperlane Announcement](https://twitter.com/Hyperlane_xyz/status/1610751624300871681)
- - [Gitcoin Blog Showcase](https://go.gitcoin.co/blog/celebrating-the-best-in-cross-chain-from-moonbeams-illuminate-hack/22)
+ - [Gitcoin Blog Feature](https://go.gitcoin.co/blog/celebrating-the-best-in-cross-chain-from-moonbeams-illuminate-hack/22)
 
 
 ## Video Demo
