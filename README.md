@@ -57,3 +57,6 @@ yarn start
 
 - Follow end user instructions above but use http://localhost:3000/ as the Safe App URL
 - Install the app and try out some interchain transactions on supported remote chains 🚀
+
+## License
+This code is released under GPL-3.0
