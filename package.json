@@ -1,6 +1,6 @@
 {
   "name": "@mukutu/safe-app",
-  "description": "Manage assets and interact with dapps on multiple chains from one Safe account using Hyperlane Interchain Accounts.",
+  "description": "Manage assets and interact with dapps on multiple chains from one Safe account.",
   "version": "0.1.0",
   "license" : "GPL-3.0",
   "private": true,

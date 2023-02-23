@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSafeAppsSDK } from '@gnosis.pm/safe-apps-react-sdk';
 import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import AppContext from '../context/AppContext';
@@ -79,7 +80,7 @@ export default function App(): React.ReactElement {
         setIsAppLoading,
       }}
     >
-      <Box display="flex" flexDirection="column" justifyContent="top" alignItems="none" minHeight="100%">
+      <Stack justifyContent="top" alignItems="none" minHeight="100%">
         <Box flexGrow={0}>
           <Header />
         </Box>
@@ -89,11 +90,11 @@ export default function App(): React.ReactElement {
           </Box>
         ) : null}
         {!isRefreshing ? ( // Hack to trigger an app reload when remote chain changes
-          <Box flexGrow={1} display="flex" flexDirection="column" justifyContent="top" alignItems="none">
+          <Stack flexGrow={1} justifyContent="top" alignItems="none">
             {app ? <SafeApp /> : <Home />}
-          </Box>
+          </Stack>
         ) : null}
-      </Box>
+      </Stack>
     </AppContext.Provider>
   );
 }
