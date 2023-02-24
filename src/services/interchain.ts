@@ -33,9 +33,9 @@ export const getDefaultRemoteChain = (origin?: string): string => {
   if (origin) {
     const originType = getChainInfoByName(origin)?.type;
     if (originType === ChainType.TESTNET) {
-      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.mumbai;
+      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.moonbasealpha;
     }
-    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.polygon;
+    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.moonbeam;
   }
   return '';
 };
