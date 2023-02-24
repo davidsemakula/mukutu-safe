@@ -48,7 +48,7 @@ export default function AppLoader() {
               </Typography>
               <Typography mb={3}>
                 The easiest way to manage assets and interact with dapps on multiple chains from one{' '}
-                <a href="https://app.safe.global/">(Gnosis) Safe</a> account.
+                <a href="https://app.safe.global/">Safe</a> account.
               </Typography>
 
               <FormControl sx={{ minWidth: 120, mb: 2 }} size="small">
@@ -83,7 +83,7 @@ export default function AppLoader() {
                   }/share/safe-app?appUrl=${encodeURIComponent('https://safe.mukutu.tech')}&chain=${originShortName}`}
                   disabled={!origin || !originShortName}
                 >
-                  Go to {isMoonbeamOrigin ? 'Moonbeam' : '(Gnosis)'} Safe
+                  Go to {isMoonbeamOrigin ? 'Moonbeam ' : ''}Safe
                 </Button>
               </Box>
             </Paper>
