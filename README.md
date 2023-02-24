@@ -33,7 +33,7 @@ You can also use this if you simply don't want to run the Safe App locally
 
 - Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) or [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam users
 - Create your Safe if you don't have one already
-- Go to Apps -> Manage Apps -> Add Custom App
+- Go to Apps -> My custom apps -> Add custom app
 - Paste the Safe App URL as https://safe.mukutu.tech
 - You should see "Mukutu Router" as a new app
 - Install the app and try out some interchain transactions on supported remote chains 🎉
