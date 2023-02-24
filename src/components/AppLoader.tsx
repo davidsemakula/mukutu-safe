@@ -14,9 +14,11 @@ import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { getSupportedChains } from '../services/interchain';
 import { ChainName, ChainType, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
+import useIsMobile from '../hooks/useIsMobile';
 
 export default function AppLoader() {
   const isTopWindow = window.self === window.top;
+  const isMobile = useIsMobile();
   const [origin, setOrigin] = useState<ChainName>(ChainName.ethereum);
   const selectableChains: Array<SimpleChainInfo | string> = useMemo(() => {
     const supportedChains = getSupportedChains();
@@ -42,8 +44,8 @@ export default function AppLoader() {
       {isTopWindow ? (
         <Stack flexGrow={1} justifyContent="center" alignItems="center" sx={{ bgcolor: '#eef2ff' }}>
           <Container>
-            <Paper sx={{ p: 4 }}>
-              <Typography variant="h4" mb={1}>
+            <Paper sx={{ p: { xs: 2, sm: 4 } }}>
+              <Typography variant={isMobile ? 'h5' : 'h4'} mb={1}>
                 Welcome to Mukutu Router
               </Typography>
               <Typography mb={3}>
