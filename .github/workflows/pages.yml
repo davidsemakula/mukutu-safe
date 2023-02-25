@@ -52,6 +52,7 @@ jobs:
       - name: Build with CRA
         env:
           PREFIX_PATHS: 'true'
+          CI: 'false'
         run: yarn build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

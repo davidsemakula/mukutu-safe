@@ -34,7 +34,7 @@ export default function SafeAppCard({ app }: Props): React.ReactElement {
       return app.supportedRelatedChains;
     }
     return [];
-  }, [app.supportedRelatedChains]);
+  }, [app.onlySupportsRelatedChains, app.supportedRelatedChains]);
 
   const onSelectApp = () => {
     setApp(app);

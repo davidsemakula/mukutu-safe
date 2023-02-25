@@ -39,7 +39,7 @@ export default function Home(): React.ReactElement {
     }
 
     return appGroups;
-  }, [remote, apps]);
+  }, [remote, apps, remoteChainName]);
 
   return (
     <Box sx={{ p: 2 }}>
