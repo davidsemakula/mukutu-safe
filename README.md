@@ -18,13 +18,6 @@ Useful links:
  - [Gitcoin Blog Feature](https://go.gitcoin.co/blog/celebrating-the-best-in-cross-chain-from-moonbeams-illuminate-hack/22)
 
 
-## Video Demo
-[https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?](https://share.vidyard.com/watch/RfCsNrC8r24hKGm7HTBBZY?)
-
-[The video is a bit blurry but still watchable, a higher fidelity demo will be coming soon 🙂]
-
-[Alternatively, you can try it out yourself by following the instructions below. It's super easy! 💪]
-
 ## Instructions
 
 ### For End users
