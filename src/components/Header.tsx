@@ -44,7 +44,7 @@ export default function Header(): React.ReactElement {
     const chain = getChainInfoByName(origin);
     return [chain?.type, chain?.shortName];
   }, [origin]);
-  const remoteShortName = useMemo(() => getChainInfoByName(origin)?.shortName, [origin]);
+  const remoteShortName = useMemo(() => getChainInfoByName(remote)?.shortName, [remote]);
   const selectableChains = useMemo(
     () => getSupportedChains().filter((chain) => chain.name !== origin && chain.type === originType),
     [origin, originType],
