@@ -14,7 +14,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import AppContext from '../context/AppContext';
 import LogoIcon from '../icons/Logo';
 import CopyAddress from './common/CopyAddress';
-import { getChainInfoByName } from '../utils/chains';
+import { getChainInfoByName, getDisplayName } from '../utils/chains';
 import { getSupportedChains } from '../services/interchain';
 
 const StyledSelect = styled(Select)(({ theme }) => ({
@@ -40,7 +40,11 @@ const StyledInputLabel = styled(InputLabel)({
 
 export default function Header(): React.ReactElement {
   const { origin, originAddress, remote, remoteAddress, app, setRemote, setApp } = useContext(AppContext);
-  const originType = useMemo(() => getChainInfoByName(origin)?.type, [origin]);
+  const [originType, originShortName] = useMemo(() => {
+    const chain = getChainInfoByName(origin);
+    return [chain?.type, chain?.shortName];
+  }, [origin]);
+  const remoteShortName = useMemo(() => getChainInfoByName(origin)?.shortName, [origin]);
   const selectableChains = useMemo(
     () => getSupportedChains().filter((chain) => chain.name !== origin && chain.type === originType),
     [origin, originType],
@@ -96,11 +100,11 @@ export default function Header(): React.ReactElement {
           </Box>
           <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
           <Box display="flex" flexDirection="row" justifyContent="center" alignItems="top" sx={{ mr: 2 }}>
-            <CopyAddress address={originAddress} chain={origin} />
+            <CopyAddress address={originAddress} prefix={originShortName ? originShortName : origin} />
             <Box alignSelf="center" sx={{ ml: 1, mr: 1 }}>
               <KeyboardDoubleArrowRightIcon />
             </Box>
-            <CopyAddress address={remoteAddress} chain={remote} />
+            <CopyAddress address={remoteAddress} prefix={remoteShortName ? remoteShortName : remote} />
           </Box>
           <FormControl sx={{ minWidth: 120 }} size="small">
             <StyledInputLabel id="remote-select">Remote</StyledInputLabel>
@@ -113,7 +117,7 @@ export default function Header(): React.ReactElement {
             >
               {selectableChains.map((chain) => (
                 <MenuItem key={`chain-${chain.name}`} value={chain.name}>
-                  {chain.name}
+                  {chain.label ?? getDisplayName(chain.name)}
                 </MenuItem>
               ))}
             </StyledSelect>

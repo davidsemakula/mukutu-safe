@@ -25,14 +25,14 @@ type SafeAppIFrameProps = {
 const IFRAME_SANDBOX_ALLOWED_FEATURES =
   'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-downloads allow-orientation-lock';
 
-const SafeAppIframe = ({
+export default function SafeAppFrame({
   appUrl,
   allowedFeaturesList,
   iframeRef,
   onLoad,
   title,
   hidden = false,
-}: SafeAppIFrameProps): ReactElement => {
+}: SafeAppIFrameProps): ReactElement {
   return (
     <Frame
       id={`iframe-${appUrl}`}
@@ -45,6 +45,4 @@ const SafeAppIframe = ({
       hidden={hidden}
     />
   );
-};
-
-export default SafeAppIframe;
+}

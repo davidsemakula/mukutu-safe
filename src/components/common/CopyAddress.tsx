@@ -6,7 +6,6 @@ import Tooltip from '@mui/material/Tooltip';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { getChainDisplayName } from '../../utils/chains';
 import { truncateAddress } from '../../utils/helpers';
 
 const StyledChip = styled(Chip)(({ theme }) => ({
@@ -29,10 +28,10 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 
 type CopyAddressProps = {
   address: string;
-  chain: string;
+  prefix?: string;
 };
 
-export default function CopyAddress({ address, chain }: CopyAddressProps): React.ReactElement {
+export default function CopyAddress({ address, prefix }: CopyAddressProps): React.ReactElement {
   const [copied, setCopied] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout>();
 
@@ -66,7 +65,7 @@ export default function CopyAddress({ address, chain }: CopyAddressProps): React
             <div style={{ position: 'relative' }}>
               <StyledChip
                 variant="outlined"
-                label={`${getChainDisplayName(chain)}: ${truncateAddress(address)}`}
+                label={[prefix, truncateAddress(address)].filter(Boolean).join(':')}
                 onDelete={handleDummyDelete}
                 deleteIcon={<ContentCopyIcon color="inherit" fontSize="small" />}
               />

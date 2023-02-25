@@ -29,7 +29,7 @@ export default function App(): React.ReactElement {
 
   useEffect(() => {
     axios
-      .get(`https://safe-client.safe.global/v1/chains/5/safe-apps?client_url=${window.location.origin}`)
+      .get(`https://safe-config.safe.global/api/v1/safe-apps/`)
       .then((res) => {
         if (res?.data && Array.isArray(res?.data)) {
           setApps(res.data as Array<SafeAppData>);
@@ -90,7 +90,7 @@ export default function App(): React.ReactElement {
           </Box>
         ) : null}
         {!isRefreshing ? ( // Hack to trigger an app reload when remote chain changes
-          <Stack flexGrow={1} justifyContent="top" alignItems="none">
+          <Stack flexGrow={1} justifyContent="top" alignItems="none" sx={{ bgcolor: '#eef2ff' }}>
             {app ? <SafeApp /> : <Home />}
           </Stack>
         ) : null}

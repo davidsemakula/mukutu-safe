@@ -1,32 +1,39 @@
 import * as ethers from 'ethers';
+import _ from 'lodash';
 import { ChainNameToDomainId, hyperlaneCoreAddresses } from '@hyperlane-xyz/sdk';
 import { BaseTransaction } from '@gnosis.pm/safe-apps-sdk';
 
 import { allChains, ChainName, ChainType, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
 
 const SUPPORTED_CHAINS: Array<string> = [
-  // Testnet
-  ChainName.alfajores,
-  ChainName.arbitrumgoerli,
-  ChainName.bsctestnet,
-  ChainName.fuji,
-  ChainName.goerli,
-  ChainName.moonbasealpha,
-  ChainName.mumbai,
-  ChainName.optimism,
+  // List is ordered by priority
   // Mainnet
+  ChainName.ethereum,
+  ChainName.moonbeam,
   ChainName.arbitrum,
   ChainName.avalanche,
   ChainName.bsc,
   ChainName.celo,
-  ChainName.ethereum,
   ChainName.optimism,
-  ChainName.moonbeam,
   ChainName.polygon,
+
+  // Testnet
+  ChainName.goerli,
+  ChainName.moonbasealpha,
+  ChainName.alfajores,
+  ChainName.arbitrumgoerli,
+  ChainName.bsctestnet,
+  ChainName.fuji,
+  ChainName.mumbai,
+  ChainName.optimismgoerli,
 ];
 
 export const getSupportedChains = (): Array<SimpleChainInfo> => {
-  return allChains.filter((chain) => SUPPORTED_CHAINS.includes(chain.name));
+  return _.orderBy(
+    allChains.filter((chain) => SUPPORTED_CHAINS.includes(chain.name)),
+    [(item) => SUPPORTED_CHAINS.indexOf(item.name)],
+    ['asc'],
+  );
 };
 
 export const getDefaultRemoteChain = (origin?: string): string => {

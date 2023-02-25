@@ -12,8 +12,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ListSubheader from '@mui/material/ListSubheader';
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import { getSupportedChains } from '../services/interchain';
-import { ChainName, ChainType, getChainInfoByName, SimpleChainInfo } from '../utils/chains';
+import { ChainName, ChainType, getChainInfoByName, getDisplayName, SimpleChainInfo } from '../utils/chains';
 import useIsMobile from '../hooks/useIsMobile';
 
 export default function AppLoader() {
@@ -69,7 +70,7 @@ export default function AppLoader() {
                       </ListSubheader>
                     ) : (
                       <MenuItem key={`chain-${idx}-${chain.name}`} value={chain.name}>
-                        {chain.name}
+                        {chain.label ?? getDisplayName(chain.name)}
                       </MenuItem>
                     ),
                   )}
