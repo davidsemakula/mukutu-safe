@@ -44,13 +44,20 @@ export default function SafeAppCard({ app }: Props): React.ReactElement {
     <Card key={`app-${app.id}`} sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <CardActionArea
         color="primary"
-        sx={{ flexGrow: 1, '&:hover': { backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.08) } }}
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          '&:hover': { backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1) },
+        }}
         disabled={app.onlySupportsRelatedChains}
         onClick={onSelectApp}
       >
         <CardHeader avatar={<Avatar alt={app.name} src={app.iconUrl} aria-label={app.name} />} />
-        <CardContent sx={{ pt: 0 }}>
-          <Typography variant="h6" color="text.secondary" mb={1}>
+        <CardContent sx={{ pt: 0, pb: app.onlySupportsRelatedChains ? 1 : 2 }}>
+          <Typography variant="h6" color="text.primary" mb={0.5}>
             {app.name}
           </Typography>
           <Typography variant="body2" color="text.secondary" mb={2}>
@@ -59,14 +66,14 @@ export default function SafeAppCard({ app }: Props): React.ReactElement {
           {tags.length ? (
             <Box>
               {tags.map((tag, idx) => (
-                <Chip key={`tag-${idx}-${tag}`} label={tag} sx={{ mr: 0.5, mb: 1 }} />
+                <Chip key={`tag-${idx}-${tag}`} size="small" label={tag} sx={{ mr: 0.5, mb: 1 }} />
               ))}
             </Box>
           ) : null}
           {supportedRelatedChains.length ? (
             <Box mt={1}>
               <Box>
-                <Typography variant="caption" mb={0.5} textOverflow="ellipsis">
+                <Typography variant="caption" mb={0.5}>
                   Available on:
                 </Typography>
               </Box>
@@ -87,7 +94,7 @@ export default function SafeAppCard({ app }: Props): React.ReactElement {
         </CardContent>
       </CardActionArea>
       {app.onlySupportsRelatedChains ? (
-        <CardActions sx={{ m: 1 }}>
+        <CardActions sx={{ p: 2, pt: 0 }}>
           <Button size="small" color="primary" variant="outlined" endIcon={<ArrowForwardIcon />} onClick={onSelectApp}>
             I'm feeling lucky
           </Button>
