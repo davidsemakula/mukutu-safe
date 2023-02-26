@@ -56,6 +56,26 @@ export const unofficiallySupportedApps: Array<Partial<SafeAppData>> = [
     name: 'Revoke.cash',
     chainIds: [chainIds.moonbeam, chainIds.moonriver, chainIds.moonbasealpha],
   },
+  {
+    id: 48,
+    name: 'Superfluid',
+    chainIds: [chainIds.fuji, chainIds.goerli, chainIds.mumbai],
+  },
+  // https://www.request.finance/post/request-finance-enables-crypto-invoices-payroll-and-more-on-moonbeam
+  // https://www.dtmb.xyz/m/request-finance
+  {
+    id: 37,
+    name: 'Request Finance',
+    chainIds: [chainIds.moonbeam],
+  },
+  // https://moonbeam.network/community/projects/lido/
+  // https://moonbeam.network/announcements/moonbeam-lido-liquid-staking/
+  // https://www.dtmb.xyz/m/lido
+  {
+    id: 14,
+    name: 'Lido Staking',
+    chainIds: [chainIds.moonbeam, chainIds.moonriver],
+  },
 
   /// Listed by not working
   // https://moonbeam.network/community/projects/curve-finance/
@@ -78,11 +98,6 @@ export const unofficiallySupportedApps: Array<Partial<SafeAppData>> = [
     id: 56,
     name: 'InsurAce',
     chainIds: [chainIds.moonbeam],
-  },
-  {
-    id: 48,
-    name: 'Superfluid',
-    chainIds: [chainIds.fuji, chainIds.goerli, chainIds.mumbai],
   },
 ];
 
