@@ -86,7 +86,7 @@ export const unofficiallySupportedApps: Array<Partial<SafeAppData>> = [
   },
 ];
 
-export const filterAppsByChain = (apps: Array<SafeAppData>, chain: string): Array<ChainSafeAppData> => {
+export function filterAppsByChain(apps: Array<SafeAppData>, chain: string): Array<ChainSafeAppData> {
   const chainId = getChainInfoByName(chain)?.id.toString();
   const relatedChainIds = getRelatedChains(chain)
     .map((chain) => chain.id?.toString())
@@ -156,4 +156,8 @@ export const filterAppsByChain = (apps: Array<SafeAppData>, chain: string): Arra
       return null;
     })
     .filter(Boolean) as Array<SafeAppData>;
-};
+}
+
+export function fairSortApps(apps: Array<SafeAppData>): Array<ChainSafeAppData> {
+  return _.sortBy(apps, [apps.length > 10 ? 'id' : 'name'], ['asc']);
+}

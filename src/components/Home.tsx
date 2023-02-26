@@ -8,7 +8,7 @@ import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
 import AppContext from '../context/AppContext';
 import SafeAppCard from './SafeAppCard';
 import { getChainInfoByName, getDisplayName } from '../utils/chains';
-import { filterAppsByChain } from '../utils/apps';
+import { fairSortApps, filterAppsByChain } from '../utils/apps';
 import { ChainSafeAppData } from '../utils/types';
 
 type AppGroup = {
@@ -27,14 +27,14 @@ export default function Home(): React.ReactElement {
     const appGroups: Array<AppGroup> = [
       {
         title: `Apps for ${remoteChainName}`,
-        apps: chainApps,
+        apps: fairSortApps(chainApps),
       },
     ];
 
     if (relatedChainApps.length) {
       appGroups.push({
         title: `Apps for related chains`,
-        apps: relatedChainApps,
+        apps: fairSortApps(relatedChainApps),
       });
     }
 
