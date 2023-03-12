@@ -9,7 +9,8 @@ import AppContext from '../context/AppContext';
 import SafeAppCard from './SafeAppCard';
 import { getChainInfoByName, getDisplayName } from '../utils/chains';
 import { fairSortApps, filterAppsByChain } from '../utils/apps';
-import { ChainSafeAppData } from '../utils/types';
+import { ChainSafeAppData, UnSupportedReason } from '../utils/types';
+import { getUnsupportedMessage } from '../utils/helpers';
 
 type AppGroup = {
   title: string;
@@ -17,9 +18,9 @@ type AppGroup = {
 };
 
 export default function Home(): React.ReactElement {
-  const { remote, apps } = useContext(AppContext);
+  const { remote, isSupported, unSupportedReason, apps } = useContext(AppContext);
   const remoteChainName = useMemo(() => getChainInfoByName(remote)?.label ?? getDisplayName(remote), [remote]);
-  const chainGroups = useMemo<Array<AppGroup>>(() => {
+  const appGroups = useMemo<Array<AppGroup>>(() => {
     const potentialApps = filterAppsByChain(apps, remote);
     const chainApps = potentialApps.filter((item) => !item.onlySupportsRelatedChains), // Apps for this chain
       relatedChainApps = potentialApps.filter((item) => item.onlySupportsRelatedChains); // Apps for related chains
@@ -46,8 +47,24 @@ export default function Home(): React.ReactElement {
       <Typography variant="h5" component="h2" mb={2}>
         Apps
       </Typography>
-      {chainGroups.length ? (
-        chainGroups.map((chainGroup) => {
+
+      {!isSupported ? (
+        <Box mb={3}>
+          <Alert severity="warning">
+            <Typography variant="body2" component="div">
+              {getUnsupportedMessage(unSupportedReason)}
+            </Typography>
+            {unSupportedReason === UnSupportedReason.mainnet ? (
+              <Typography variant="body2" component="div" fontWeight={500}>
+                Mainnet support is coming soon! Check back here {/* or follow Mukutu's social channels */}for updates!
+              </Typography>
+            ) : null}
+          </Alert>
+        </Box>
+      ) : null}
+
+      {appGroups.length ? (
+        appGroups.map((chainGroup) => {
           const groupApps = chainGroup.apps ?? [];
           return (
             <Box mb={4}>

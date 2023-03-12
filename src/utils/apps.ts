@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
-import { ChainSafeAppData } from './types';
-import { allChains, getChainInfoByName, getRelatedChains, SimpleChainInfo } from './chains';
+import { ChainSafeAppData, SimpleChainInfo } from './types';
+import { allChains, getChainInfoByName, getRelatedChains } from './chains';
 
 export const chainAgnosticApps: Array<Partial<SafeAppData>> = [
   {

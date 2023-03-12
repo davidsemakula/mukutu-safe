@@ -24,8 +24,9 @@ import type {
   SafeBalances,
 } from '@gnosis.pm/safe-apps-sdk';
 import { Methods } from '@gnosis.pm/safe-apps-sdk';
+
 import AppCommunicator from '../services/AppCommunicator';
-import { SimpleChainInfo } from '../utils/chains';
+import { SimpleChainInfo } from '../utils/types';
 
 type JsonRpcResponse = {
   jsonrpc: string;

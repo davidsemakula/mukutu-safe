@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
+import { UnSupportedReason } from '../utils/types';
 
 export type AppContextType = {
   // Data
@@ -7,6 +8,8 @@ export type AppContextType = {
   originAddress: string;
   remote: string;
   remoteAddress: string;
+  isSupported: boolean;
+  unSupportedReason?: UnSupportedReason;
   app: SafeAppData | undefined;
   apps: Array<SafeAppData>;
   isAppLoading: boolean;
@@ -17,12 +20,14 @@ export type AppContextType = {
   setIsAppLoading: (loading: boolean) => void;
 };
 
-const AppContext = React.createContext({
+const AppContext = React.createContext<AppContextType>({
   // Data
   origin: '',
   originAddress: '',
   remote: '',
   remoteAddress: '',
+  isSupported: false,
+  unSupportedReason: undefined,
   app: undefined,
   apps: [],
   isAppLoading: false,
@@ -33,6 +38,6 @@ const AppContext = React.createContext({
   setApp: () => {},
   setIsAppLoading: () => {},
   /* eslint-enable @typescript-eslint/no-empty-function */
-} as AppContextType);
+});
 
 export default AppContext;

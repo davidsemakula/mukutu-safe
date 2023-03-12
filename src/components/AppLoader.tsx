@@ -14,13 +14,14 @@ import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { getSupportedChains } from '../services/interchain';
-import { ChainName, ChainType, getChainInfoByName, getDisplayName, SimpleChainInfo } from '../utils/chains';
+import { getChainInfoByName, getDisplayName } from '../utils/chains';
 import useIsMobile from '../hooks/useIsMobile';
+import { ChainName, ChainType, SimpleChainInfo } from '../utils/types';
 
 export default function AppLoader() {
   const isTopWindow = window.self === window.top;
   const isMobile = useIsMobile();
-  const [origin, setOrigin] = useState<ChainName>(ChainName.ethereum);
+  const [origin, setOrigin] = useState<ChainName>(ChainName.goerli); // TODO: Switch to a mainnet as the default when ready for release
   const selectableChains: Array<SimpleChainInfo | string> = useMemo(() => {
     const supportedChains = getSupportedChains();
     const mainnetChains = supportedChains.filter((chain) => chain.type === ChainType.MAINNET);
@@ -41,7 +42,7 @@ export default function AppLoader() {
 
   return (
     <Stack minHeight="100%">
-      <LinearProgress />
+      {!isTopWindow ? <LinearProgress /> : null}
       {isTopWindow ? (
         <Stack flexGrow={1} justifyContent="center" alignItems="center" sx={{ bgcolor: '#eef2ff' }}>
           <Container>
@@ -50,7 +51,7 @@ export default function AppLoader() {
                 Welcome to Mukutu Router
               </Typography>
               <Typography mb={3}>
-                The easiest way to manage assets and interact with dapps on multiple chains from one{' '}
+                The easiest way to manage assets and interact with smart contracts and dapps on multiple chains from one{' '}
                 <a href="https://app.safe.global/">Safe</a> account.
               </Typography>
 

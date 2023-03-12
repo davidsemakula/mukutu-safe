@@ -22,7 +22,15 @@ Useful links:
 
 ### For End users
 
-You can also use this if you simply don't want to run the Safe App locally
+#### Option 1: Add Mukutu Router as a custom Safe App using a wizard
+
+- Go to [https://safe.mukutu.tech](https://safe.mukutu.tech)
+- Select your origin chain and click "Go to Safe" or "Go to Moonbeam Safe" for Moonbeam users
+- You will be redirected to the appropriate Safe web interface
+- Follow the prompts provided by the Safe web interface to access Mukutu Router for your Safe
+
+
+#### Option 2: Manually add Mukutu Router as a custom Safe App
 
 - Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) or [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam users
 - Create your Safe if you don't have one already

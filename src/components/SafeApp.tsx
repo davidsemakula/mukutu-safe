@@ -18,9 +18,10 @@ import AppContext from '../context/AppContext';
 import useAppCommunicator, { UseAppCommunicatorHandlers } from '../hooks/useAppCommunicator';
 import SafeAppFrame from './SafeAppFrame';
 import TransactionStatus, { Status } from './TransactionStatus';
-import { getChainInfoByName, parseSafeChainInfo, SimpleChainInfo } from '../utils/chains';
+import { getChainInfoByName, parseSafeChainInfo } from '../utils/chains';
 import { isSameUrl } from '../utils/helpers';
 import { isTransactionBatchSupported, translateTransactions } from '../services/interchain';
+import { SimpleChainInfo } from '../utils/types';
 
 export default function SafeApp(): React.ReactElement {
   const { sdk } = useSafeAppsSDK();
@@ -87,7 +88,7 @@ export default function SafeApp(): React.ReactElement {
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onGetSafeBalances: async (currency: string): Promise<SafeBalances> => {
-      // TODO: @david Replace mock response with real list of user's assets
+      // TODO: Replace mock response with real list of user's assets
       return {
         fiatTotal: '0',
         items: [],

@@ -1,7 +1,7 @@
 {
   "short_name": "Mukutu Router",
   "name": "Mukutu Router",
-  "description": "Manage assets and interact with dapps on multiple chains from one Safe account.",
+  "description": "Manage assets and interact with smart contracts and dapps on multiple chains from one Safe account.",
   "icons": [
     {
       "src": "logo.svg",

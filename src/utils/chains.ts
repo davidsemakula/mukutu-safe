@@ -1,50 +1,7 @@
 import { ChainInfo } from '@gnosis.pm/safe-apps-sdk';
 import _ from 'lodash';
 
-export enum ChainName {
-  // Testnet
-  alfajores = 'alfajores',
-  arbitrumgoerli = 'arbitrumgoerli',
-  auroratestnet = 'auroratestnet',
-  bsctestnet = 'bsctestnet',
-  fantomtestnet = 'fantomtestnet',
-  fuji = 'fuji',
-  goerli = 'goerli',
-  moonbasealpha = 'moonbasealpha',
-  mumbai = 'mumbai',
-  optimismgoerli = 'optimismgoerli',
-
-  // Mainnet
-  arbitrum = 'arbitrum',
-  aurora = 'aurora',
-  avalanche = 'avalanche',
-  bsc = 'bsc',
-  celo = 'celo',
-  ethereum = 'ethereum',
-  fantom = 'fantom',
-  optimism = 'optimism',
-  moonbeam = 'moonbeam',
-  polygon = 'polygon',
-}
-
-export enum ChainType {
-  MAINNET = 'mainnet',
-  TESTNET = 'testnet',
-}
-
-export type SimpleChainInfo = {
-  name: ChainName;
-  id: number;
-  label: string;
-  rpcUrl: string;
-  blockExplorerUrl: string;
-  symbol: string;
-  shortName?: string;
-  currency?: string;
-  decimals?: number;
-  type: ChainType;
-  relatedTo?: Array<string>;
-};
+import { ChainName, ChainType, SimpleChainInfo } from './types';
 
 export const allChains: Array<SimpleChainInfo> = [
   // Mainnet
@@ -281,15 +238,15 @@ export const allChains: Array<SimpleChainInfo> = [
   },
 ];
 
-export const getChainInfoById = (chainId: string | number): SimpleChainInfo | undefined => {
+export function getChainInfoById(chainId: string | number): SimpleChainInfo | undefined {
   return allChains.find((chain) => (chainId || '').toString() === (chain.id || '').toString());
-};
+}
 
-export const getChainInfoByName = (chainName: string): SimpleChainInfo | undefined => {
+export function getChainInfoByName(chainName: string): SimpleChainInfo | undefined {
   return allChains.find((chain) => (chainName || '').toString() === (chain.name || '').toString());
-};
+}
 
-export const parseSafeChainInfo = (chain: SimpleChainInfo): ChainInfo => {
+export function parseSafeChainInfo(chain: SimpleChainInfo): ChainInfo {
   const blockExplorerUrl = `${chain.blockExplorerUrl}${/\/$/.test(chain.blockExplorerUrl) ? '' : '/'}`;
   return {
     chainName: getDisplayName(chain.name),
@@ -307,13 +264,13 @@ export const parseSafeChainInfo = (chain: SimpleChainInfo): ChainInfo => {
       api: `${blockExplorerUrl}api?module={{module}}&action={{action}}&address={{address}}&apiKey={{apiKey}}`,
     },
   };
-};
+}
 
-export const getDisplayName = (name: string): string => {
+export function getDisplayName(name: string): string {
   return name ? _.capitalize(name) : '';
-};
+}
 
-export const getRelatedChains = (name: string): Array<SimpleChainInfo> => {
+export function getRelatedChains(name: string): Array<SimpleChainInfo> {
   return allChains.filter(
     (chain) =>
       name &&
@@ -322,4 +279,8 @@ export const getRelatedChains = (name: string): Array<SimpleChainInfo> => {
       Array.isArray(chain.relatedTo) &&
       chain.relatedTo.includes(name),
   );
-};
+}
+
+export function isMainnet(name: string): boolean {
+  return getChainInfoByName(name)?.type === ChainType.MAINNET;
+}

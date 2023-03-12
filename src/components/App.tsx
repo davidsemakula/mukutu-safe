@@ -10,8 +10,9 @@ import AppContext from '../context/AppContext';
 import Header from './Header';
 import Home from './Home';
 import SafeApp from './SafeApp';
-import { getChainInfoById, SimpleChainInfo } from '../utils/chains';
-import { getDefaultRemoteChain, getInterchainAccountAddress } from '../services/interchain';
+import { getChainInfoById, isMainnet } from '../utils/chains';
+import { getDefaultRemoteChain, getInterchainAccountAddress, isSupportedChain } from '../services/interchain';
+import { SimpleChainInfo, UnSupportedReason } from '../utils/types';
 
 export default function App(): React.ReactElement {
   const { connected, safe } = useSafeAppsSDK();
@@ -21,6 +22,9 @@ export default function App(): React.ReactElement {
 
   const [remote, setRemote] = useState<string>(getDefaultRemoteChain(origin));
   const [remoteAddress, setRemoteAddress] = useState<string>('');
+
+  const [isSupported, setIsSupported] = useState<boolean>(false);
+  const [unSupportedReason, setUnSupportedReason] = useState<UnSupportedReason | undefined>(undefined);
 
   const [app, setApp] = useState<SafeAppData | undefined>();
   const [apps, setApps] = useState<Array<SafeAppData>>([]);
@@ -39,6 +43,31 @@ export default function App(): React.ReactElement {
         //
       });
   }, []);
+
+  useEffect(() => {
+    // Validates that the new origin and remote pair is supported
+    const isOriginSupported = isSupportedChain(origin),
+      isRemoteSupported = isSupportedChain(remote),
+      isOriginMainnet = isMainnet(origin),
+      isRemoteMainnet = isMainnet(remote),
+      status = isOriginSupported && isRemoteSupported && !isOriginMainnet && !isOriginMainnet;
+
+    let reason = undefined;
+    if (!status) {
+      if (isOriginMainnet || isRemoteMainnet) {
+        reason = UnSupportedReason.mainnet;
+      } else if (!isOriginSupported && !isRemoteSupported) {
+        reason = UnSupportedReason.origin_and_remote;
+      } else if (!isOriginSupported) {
+        reason = UnSupportedReason.origin;
+      } else {
+        reason = UnSupportedReason.remote;
+      }
+    }
+
+    setIsSupported(status);
+    setUnSupportedReason(reason);
+  }, [origin, remote]);
 
   useEffect(() => {
     getInterchainAccountAddress(origin, remote, originAddress as string).then((address) => {
@@ -70,6 +99,8 @@ export default function App(): React.ReactElement {
         originAddress,
         remote,
         remoteAddress,
+        isSupported,
+        unSupportedReason,
         app,
         apps,
         isAppLoading,
@@ -91,7 +122,7 @@ export default function App(): React.ReactElement {
         ) : null}
         {!isRefreshing ? ( // Hack to trigger an app reload when remote chain changes
           <Stack flexGrow={1} justifyContent="top" alignItems="none" sx={{ bgcolor: '#eef2ff' }}>
-            {app ? <SafeApp /> : <Home />}
+            {app && isSupported ? <SafeApp /> : <Home />}
           </Stack>
         ) : null}
       </Stack>

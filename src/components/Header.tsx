@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -39,7 +39,7 @@ const StyledInputLabel = styled(InputLabel)({
 });
 
 export default function Header(): React.ReactElement {
-  const { origin, originAddress, remote, remoteAddress, app, setRemote, setApp } = useContext(AppContext);
+  const { origin, originAddress, remote, remoteAddress, isSupported, app, setRemote, setApp } = useContext(AppContext);
   const [originType, originShortName] = useMemo(() => {
     const chain = getChainInfoByName(origin);
     return [chain?.type, chain?.shortName];
@@ -99,13 +99,15 @@ export default function Header(): React.ReactElement {
             </Breadcrumbs>
           </Box>
           <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
-          <Box display="flex" flexDirection="row" justifyContent="center" alignItems="top" sx={{ mr: 2 }}>
-            <CopyAddress address={originAddress} prefix={originShortName ? originShortName : origin} />
-            <Box alignSelf="center" sx={{ ml: 1, mr: 1 }}>
-              <KeyboardDoubleArrowRightIcon />
+          {isSupported ? (
+            <Box display="flex" flexDirection="row" justifyContent="center" alignItems="top" sx={{ mr: 2 }}>
+              <CopyAddress address={originAddress} prefix={originShortName ? originShortName : origin} />
+              <Box alignSelf="center" sx={{ ml: 1, mr: 1 }}>
+                <KeyboardDoubleArrowRightIcon />
+              </Box>
+              <CopyAddress address={remoteAddress} prefix={remoteShortName ? remoteShortName : remote} />
             </Box>
-            <CopyAddress address={remoteAddress} prefix={remoteShortName ? remoteShortName : remote} />
-          </Box>
+          ) : null}
           <FormControl sx={{ minWidth: 120 }} size="small">
             <StyledInputLabel id="remote-select">Remote</StyledInputLabel>
             <StyledSelect
