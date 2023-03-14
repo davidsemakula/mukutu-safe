@@ -44,7 +44,7 @@ export const allChains: Array<SimpleChainInfo> = [
   {
     name: ChainName.bsc,
     id: 56,
-    label: 'BNB Smart Chain',
+    label: 'BNB Chain',
     rpcUrl: 'https://rpc.ankr.com/bsc',
     blockExplorerUrl: 'https://bscscan.com',
     symbol: 'BNB',
@@ -158,7 +158,7 @@ export const allChains: Array<SimpleChainInfo> = [
   {
     name: ChainName.bsctestnet,
     id: 97,
-    label: 'BSC Testnet',
+    label: 'BNB Testnet',
     rpcUrl: 'https://data-seed-prebsc-1-s3.binance.org:8545',
     blockExplorerUrl: 'https://testnet.bscscan.com',
     symbol: 'BNB',
