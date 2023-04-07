@@ -26,7 +26,14 @@ export default function AppLoader() {
     const supportedChains = getSupportedChains();
     const mainnetChains = supportedChains.filter((chain) => chain.type === ChainType.MAINNET);
     const testnetChains = supportedChains.filter((chain) =>
-      ([ChainName.goerli, ChainName.moonbasealpha] as Array<ChainName>).includes(chain.name),
+      (
+        [
+          ChainName.goerli,
+          ChainName.moonbasealpha,
+          ChainName.evmostestnet,
+          ChainName.harmonytestnet,
+        ] as Array<ChainName>
+      ).includes(chain.name),
     );
     return ['Mainnets', ...mainnetChains, 'Testnets', ...testnetChains];
   }, []);
@@ -35,9 +42,31 @@ export default function AppLoader() {
     setOrigin(event.target.value as ChainName);
   };
 
-  const [originShortName, isMoonbeamOrigin] = useMemo(() => {
+  const [originShortName, safeDomain] = useMemo(() => {
     const chain = getChainInfoByName(origin);
-    return [chain?.shortName, ([ChainName.moonbeam, ChainName.moonbasealpha] as Array<ChainName>).includes(origin)];
+    let safeDomain;
+    switch (origin) {
+      case ChainName.moonbeam:
+      case ChainName.moonbasealpha: {
+        safeDomain = 'multisig.moonbeam.network';
+        break;
+      }
+      case ChainName.evmos:
+      case ChainName.evmostestnet: {
+        safeDomain = 'safe.evmos.org';
+        break;
+      }
+      case ChainName.harmony:
+      case ChainName.harmonytestnet: {
+        safeDomain = 'multisig.harmony.one';
+        break;
+      }
+      default: {
+        safeDomain = 'app.safe.global';
+        break;
+      }
+    }
+    return [chain?.shortName, safeDomain];
   }, [origin]);
 
   return (
@@ -82,12 +111,12 @@ export default function AppLoader() {
                 <Button
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
-                  href={`https://${
-                    isMoonbeamOrigin ? 'multisig.moonbeam.network' : 'app.safe.global'
-                  }/share/safe-app?appUrl=${encodeURIComponent('https://safe.mukutu.tech')}&chain=${originShortName}`}
+                  href={`https://${safeDomain ?? 'app.safe.global'}/share/safe-app?appUrl=${encodeURIComponent(
+                    window.location.hostname === 'localhost' ? window.location.origin : 'https://safe.mukutu.tech',
+                  )}&chain=${originShortName}`}
                   disabled={!origin || !originShortName}
                 >
-                  Go to {isMoonbeamOrigin ? 'Moonbeam ' : ''}Safe
+                  Go to Safe
                 </Button>
               </Box>
             </Paper>

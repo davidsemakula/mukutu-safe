@@ -15,6 +15,8 @@ const SUPPORTED_CHAINS: Array<string> = [
   ChainName.avalanche,
   ChainName.bsc,
   ChainName.celo,
+  ChainName.evmos,
+  ChainName.harmony,
   ChainName.moonbeam,
   ChainName.optimism,
 
@@ -25,7 +27,9 @@ const SUPPORTED_CHAINS: Array<string> = [
   ChainName.alfajores,
   ChainName.arbitrumgoerli,
   ChainName.bsctestnet,
+  ChainName.evmostestnet,
   ChainName.fuji,
+  ChainName.harmonytestnet,
   ChainName.moonbasealpha,
   ChainName.optimismgoerli,
 ];

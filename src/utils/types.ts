@@ -1,18 +1,6 @@
 import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
 
 export enum ChainName {
-  // Testnet
-  alfajores = 'alfajores',
-  arbitrumgoerli = 'arbitrumgoerli',
-  auroratestnet = 'auroratestnet',
-  bsctestnet = 'bsctestnet',
-  fantomtestnet = 'fantomtestnet',
-  fuji = 'fuji',
-  goerli = 'goerli',
-  moonbasealpha = 'moonbasealpha',
-  mumbai = 'mumbai',
-  optimismgoerli = 'optimismgoerli',
-
   // Mainnet
   arbitrum = 'arbitrum',
   aurora = 'aurora',
@@ -20,10 +8,26 @@ export enum ChainName {
   bsc = 'bsc',
   celo = 'celo',
   ethereum = 'ethereum',
+  evmos = 'evmos',
   fantom = 'fantom',
+  harmony = 'harmony',
   optimism = 'optimism',
   moonbeam = 'moonbeam',
   polygon = 'polygon',
+
+  // Testnet
+  alfajores = 'alfajores',
+  arbitrumgoerli = 'arbitrumgoerli',
+  auroratestnet = 'auroratestnet',
+  bsctestnet = 'bsctestnet',
+  evmostestnet = 'evmostestnet',
+  fantomtestnet = 'fantomtestnet',
+  fuji = 'fuji',
+  goerli = 'goerli',
+  harmonytestnet = 'harmonytestnet',
+  moonbasealpha = 'moonbasealpha',
+  mumbai = 'mumbai',
+  optimismgoerli = 'optimismgoerli',
 }
 
 export enum ChainType {
