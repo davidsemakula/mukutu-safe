@@ -25,19 +25,19 @@ Useful links:
 #### Option 1: Add Mukutu Router as a custom Safe app using a wizard
 
 - Go to [https://safe.mukutu.tech](https://safe.mukutu.tech)
-- Select your origin chain and click "Go to Safe" or "Go to Moonbeam Safe" for Moonbeam users
-- You will be redirected to the appropriate Safe web interface
+- Select your origin chain and click "Go to Safe"
+- You will be redirected to the appropriate Safe web interface (which may be an authoritative fork for chains that aren't supported by the official Safe interface e.g. Moonbeam Safe)
 - Follow the prompts provided by the Safe web interface to access Mukutu Router for your Safe
 
 
 #### Option 2: Manually add Mukutu Router as a custom Safe app
 
-- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) or [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam users
+- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) (or the interface of an authoritative fork e.g [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam)
 - Create your Safe if you don't have one already
 - Go to Apps -> My custom apps -> Add custom app
 - Paste the Safe app URL as https://safe.mukutu.tech
 - You should see "Mukutu Router" as a new app
-- Install the app and try out some interchain transactions on supported remote chains 🎉
+- Install the app and try out some cross-chain transactions on supported remote chains 🎉
 
 
 ### For Developers
@@ -57,7 +57,7 @@ yarn start
 #### Add Custom App to Safe
 
 - Follow end user instructions above but use http://localhost:3000/ as the Safe app URL
-- Install the app and try out some interchain transactions on supported remote chains 🚀
+- Install the app and try out some cross-chain transactions on supported remote chains 🚀
 
 ## License
 This code is released under GPL-3.0

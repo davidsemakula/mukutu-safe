@@ -7,25 +7,26 @@ import { allChains, getChainInfoByName } from '../utils/chains';
 import { ChainName, ChainType, SimpleChainInfo } from '../utils/types';
 
 const SUPPORTED_CHAINS: Array<string> = [
-  // List is ordered by priority
   // Mainnet
   ChainName.ethereum,
-  ChainName.moonbeam,
+  ChainName.polygon,
+  // Alphabetical order for the rest
   ChainName.arbitrum,
   ChainName.avalanche,
   ChainName.bsc,
   ChainName.celo,
+  ChainName.moonbeam,
   ChainName.optimism,
-  ChainName.polygon,
 
   // Testnet
   ChainName.goerli,
-  ChainName.moonbasealpha,
+  ChainName.mumbai,
+  // Alphabetical order for the rest
   ChainName.alfajores,
   ChainName.arbitrumgoerli,
   ChainName.bsctestnet,
   ChainName.fuji,
-  ChainName.mumbai,
+  ChainName.moonbasealpha,
   ChainName.optimismgoerli,
 ];
 
@@ -45,9 +46,9 @@ export function getDefaultRemoteChain(origin?: string): string {
   if (origin) {
     const originType = getChainInfoByName(origin)?.type;
     if (originType === ChainType.TESTNET) {
-      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.moonbasealpha;
+      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.mumbai;
     }
-    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.moonbeam;
+    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.polygon;
   }
   return '';
 }
