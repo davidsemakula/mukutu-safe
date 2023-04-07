@@ -28,12 +28,12 @@ Useful links:
 
 - Go to [https://safe.mukutu.tech](https://safe.mukutu.tech)
 - Select your origin chain and click "Go to Safe"
-- You will be redirected to the appropriate Safe web interface (which may be an authoritative fork for chains that aren't supported by the official Safe interface e.g. Moonbeam, Evmos and Harmony)
+- You will be redirected to the appropriate Safe web interface (which may be an authoritative fork for chains that aren't supported by the official Safe interface e.g. Moonbeam and Evmos)
 - Follow the prompts provided by the Safe web interface to access Mukutu Router for your Safe
 
 #### Option 2: Manually add Mukutu Router as a custom Safe app
 
-- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) (or the interface of an authoritative fork e.g [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam, [https://safe.evmos.org](https://safe.evmos.org) for Evmos and [https://multisig.harmony.one](https://multisig.harmony.one) for Harmony)
+- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) (or the interface of an authoritative fork e.g [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam and [https://safe.evmos.org](https://safe.evmos.org) for Evmos)
 - Create your Safe if you don't have one already
 - Go to Apps -> My custom apps -> Add custom app
 - Paste the Safe app URL as https://safe.mukutu.tech
