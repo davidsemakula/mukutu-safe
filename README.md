@@ -8,15 +8,17 @@ This is achieved by advertising the remote chain and a [Hyperlane Interchain Acc
 This allows us to leverage already existing user-friendly UI/UX of other Safe apps to compose the remote chain transaction.
 This app then intercepts the sendTransaction call, translates it to a call to the [Hyperlane Interchain Account Router](https://docs.hyperlane.xyz/docs/developers/send) on the origin chain and submits it to the Safe Account for approval and execution.
 
+**NOTE:** Mukutu Router is still in early stages of development and support for some networks and Safe forks is still experimental, check back over the next few weeks for regular updates.
+
+💬 Twitter: [@davidsemakula](https://twitter.com/davidsemakula).
 
 ## Awards
 [🥇 Top Prize: Moonbeam Illuminate/22 Hackathon | Best use of Hyperlane](https://twitter.com/MoonbeamNetwork/status/1610738659656962048)
 
 Useful links:
+ - [Gitcoin Blog Feature](https://go.gitcoin.co/blog/celebrating-the-best-in-cross-chain-from-moonbeams-illuminate-hack/22)
  - [Moonbeam Announcement](https://twitter.com/MoonbeamNetwork/status/1610738659656962048)
  - [Hyperlane Announcement](https://twitter.com/Hyperlane_xyz/status/1610751624300871681)
- - [Gitcoin Blog Feature](https://go.gitcoin.co/blog/celebrating-the-best-in-cross-chain-from-moonbeams-illuminate-hack/22)
-
 
 ## Instructions
 
@@ -26,19 +28,17 @@ Useful links:
 
 - Go to [https://safe.mukutu.tech](https://safe.mukutu.tech)
 - Select your origin chain and click "Go to Safe"
-- You will be redirected to the appropriate Safe web interface (which may be an authoritative fork for chains that aren't supported by the official Safe interface e.g. Moonbeam Safe)
+- You will be redirected to the appropriate Safe web interface (which may be an authoritative fork for chains that aren't supported by the official Safe interface e.g. Moonbeam, Evmos and Harmony)
 - Follow the prompts provided by the Safe web interface to access Mukutu Router for your Safe
-
 
 #### Option 2: Manually add Mukutu Router as a custom Safe app
 
-- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) (or the interface of an authoritative fork e.g [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam)
+- Go to the Safe web interface at [https://app.safe.global](https://app.safe.global) (or the interface of an authoritative fork e.g [https://multisig.moonbeam.network](https://multisig.moonbeam.network) for Moonbeam, [https://safe.evmos.org](https://safe.evmos.org) for Evmos and [https://multisig.harmony.one](https://multisig.harmony.one) for Harmony)
 - Create your Safe if you don't have one already
 - Go to Apps -> My custom apps -> Add custom app
 - Paste the Safe app URL as https://safe.mukutu.tech
 - You should see "Mukutu Router" as a new app
 - Install the app and try out some cross-chain transactions on supported remote chains 🎉
-
 
 ### For Developers
 
