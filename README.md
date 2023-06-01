@@ -22,6 +22,8 @@ Useful links:
 
 ## Instructions
 
+**NOTE:** ⚠ If some of your Safe apps are not loading, you may need to enable third-party cookies in your web browser's settings. You can do so by following [this guide](https://help.safe.global/en/articles/40797-why-do-i-need-to-enable-third-party-cookies-for-safe-apps) from the Safe team.
+
 ### For End users
 
 #### Option 1: Add Mukutu Router as a custom Safe app using a wizard
@@ -39,6 +41,7 @@ Useful links:
 - Paste the Safe app URL as https://safe.mukutu.tech
 - You should see "Mukutu Router" as a new app
 - Install the app and try out some cross-chain transactions on supported remote chains 🎉
+
 
 ### For Developers
 
