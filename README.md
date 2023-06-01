@@ -8,7 +8,7 @@ This is achieved by advertising the remote chain and a [Hyperlane Interchain Acc
 This allows us to leverage already existing user-friendly UI/UX of other Safe apps to compose the remote chain transaction.
 This app then intercepts the sendTransaction call, translates it to a call to the [Hyperlane Interchain Account Router](https://docs.hyperlane.xyz/docs/developers/send) on the origin chain and submits it to the Safe Account for approval and execution.
 
-**NOTE:** 🚧 Mukutu Router is still in early stages of development and support for some networks (e.g. [Evmos](https://evmos.org/)) and Safe forks is still experimental, check back over the next few weeks for regular updates.
+**NOTE:** 🚧 Mukutu Router is still in early stages of development and support for some networks (e.g. [Evmos](https://evmos.org/)) and Safe forks is still experimental and work in progress, check back over the next few weeks for regular updates.
 
 💬 Twitter: [@davidsemakula](https://twitter.com/davidsemakula).
 
