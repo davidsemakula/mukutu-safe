@@ -63,4 +63,4 @@ yarn start
 - Install the app and try out some cross-chain transactions on supported remote chains 🚀
 
 ## License
-This code is released under GPL-3.0
+This code is released under [GPL-3.0](/LICENSE).
