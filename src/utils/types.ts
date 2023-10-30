@@ -8,11 +8,8 @@ export enum ChainName {
   bsc = 'bsc',
   celo = 'celo',
   ethereum = 'ethereum',
-  evmos = 'evmos',
   fantom = 'fantom',
-  harmony = 'harmony',
   optimism = 'optimism',
-  moonbeam = 'moonbeam',
   polygon = 'polygon',
 
   // Testnet
@@ -20,12 +17,9 @@ export enum ChainName {
   arbitrumgoerli = 'arbitrumgoerli',
   auroratestnet = 'auroratestnet',
   bsctestnet = 'bsctestnet',
-  evmostestnet = 'evmostestnet',
   fantomtestnet = 'fantomtestnet',
   fuji = 'fuji',
   goerli = 'goerli',
-  harmonytestnet = 'harmonytestnet',
-  moonbasealpha = 'moonbasealpha',
   mumbai = 'mumbai',
   optimismgoerli = 'optimismgoerli',
 }

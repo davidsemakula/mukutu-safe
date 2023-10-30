@@ -76,18 +76,6 @@ export const allChains: Array<SimpleChainInfo> = [
     relatedTo: [ChainName.goerli],
   },
   {
-    name: ChainName.evmos,
-    id: 9001,
-    label: 'Evmos',
-    rpcUrl: 'https://eth.bd.evmos.org:8545',
-    blockExplorerUrl: 'https://escan.live',
-    symbol: 'EVMOS',
-    shortName: 'evmos',
-    currency: 'EVMOS',
-    type: ChainType.MAINNET,
-    relatedTo: [ChainName.evmostestnet],
-  },
-  {
     name: ChainName.fantom,
     id: 250,
     label: 'Fantom',
@@ -100,18 +88,6 @@ export const allChains: Array<SimpleChainInfo> = [
     relatedTo: [ChainName.fantomtestnet],
   },
   {
-    name: ChainName.harmony,
-    id: 1666600000,
-    label: 'Harmony',
-    rpcUrl: 'https://api.harmony.one',
-    blockExplorerUrl: 'https://explorer.harmony.one',
-    symbol: 'ONE',
-    shortName: 'hmy',
-    currency: 'ONE',
-    type: ChainType.MAINNET,
-    relatedTo: [ChainName.harmonytestnet],
-  },
-  {
     name: ChainName.optimism,
     id: 10,
     label: 'Optimism',
@@ -121,17 +97,6 @@ export const allChains: Array<SimpleChainInfo> = [
     shortName: 'oeth',
     type: ChainType.MAINNET,
     relatedTo: [ChainName.optimismgoerli],
-  },
-  {
-    name: ChainName.moonbeam,
-    id: 1284,
-    label: 'Moonbeam',
-    rpcUrl: 'https://rpc.api.moonbeam.network',
-    blockExplorerUrl: 'https://moonscan.io/',
-    symbol: 'GLMR',
-    shortName: 'mbeam',
-    type: ChainType.MAINNET,
-    relatedTo: [ChainName.moonbasealpha],
   },
   {
     name: ChainName.polygon,
@@ -192,18 +157,6 @@ export const allChains: Array<SimpleChainInfo> = [
     relatedTo: [ChainName.bsc],
   },
   {
-    name: ChainName.evmostestnet,
-    id: 9000,
-    label: 'Evmos Testnet',
-    rpcUrl: 'https://eth.bd.evmos.dev:8545',
-    blockExplorerUrl: 'https://evm.evmos.dev',
-    symbol: 'tEVMOS',
-    shortName: 'evmos-testnet',
-    currency: 'tEVMOS',
-    type: ChainType.TESTNET,
-    relatedTo: [ChainName.evmos],
-  },
-  {
     name: ChainName.fantomtestnet,
     id: 4002,
     label: 'Fantom Opera Testnet',
@@ -240,29 +193,6 @@ export const allChains: Array<SimpleChainInfo> = [
     relatedTo: [ChainName.ethereum],
   },
   {
-    name: ChainName.harmonytestnet,
-    id: 1666700000,
-    label: 'Harmony Testnet',
-    rpcUrl: 'https://api.s0.b.hmny.io',
-    blockExplorerUrl: 'https://explorer.pops.one',
-    symbol: 'ONE',
-    shortName: 'hmyt',
-    currency: 'ONE',
-    type: ChainType.TESTNET,
-    relatedTo: [ChainName.harmony],
-  },
-  {
-    name: ChainName.moonbasealpha,
-    id: 1287,
-    label: 'Moonbase Alpha',
-    rpcUrl: 'https://rpc.api.moonbase.moonbeam.network',
-    blockExplorerUrl: 'https://moonbase.moonscan.io/',
-    symbol: 'DEV',
-    shortName: 'mbase',
-    type: ChainType.TESTNET,
-    relatedTo: [ChainName.moonbeam],
-  },
-  {
     name: ChainName.mumbai,
     id: 80001,
     label: 'Polygon Mumbai',
@@ -285,6 +215,10 @@ export const allChains: Array<SimpleChainInfo> = [
     relatedTo: [ChainName.optimism],
   },
 ];
+
+export function getChainId(name: string): number | undefined {
+  return allChains.find((chain) => chain.name === name)?.id;
+}
 
 export function getChainInfoById(chainId: string | number): SimpleChainInfo | undefined {
   return allChains.find((chain) => (chainId || '').toString() === (chain.id || '').toString());

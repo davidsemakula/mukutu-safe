@@ -21,20 +21,12 @@ import { ChainName, ChainType, SimpleChainInfo } from '../utils/types';
 export default function AppLoader() {
   const isTopWindow = window.self === window.top;
   const isMobile = useIsMobile();
-  const [origin, setOrigin] = useState<ChainName>(ChainName.goerli); // TODO: Switch to a mainnet as the default when ready for release
+  // TODO: Switch to a mainnet as the default when ready for release
+  const [origin, setOrigin] = useState<ChainName>(ChainName.goerli);
   const selectableChains: Array<SimpleChainInfo | string> = useMemo(() => {
     const supportedChains = getSupportedChains();
     const mainnetChains = supportedChains.filter((chain) => chain.type === ChainType.MAINNET);
-    const testnetChains = supportedChains.filter((chain) =>
-      (
-        [
-          ChainName.goerli,
-          ChainName.moonbasealpha,
-          ChainName.evmostestnet,
-          ChainName.harmonytestnet,
-        ] as Array<ChainName>
-      ).includes(chain.name),
-    );
+    const testnetChains = supportedChains.filter((chain) => ChainName.goerli === chain.name);
     return ['Mainnets', ...mainnetChains, 'Testnets', ...testnetChains];
   }, []);
 
@@ -42,31 +34,9 @@ export default function AppLoader() {
     setOrigin(event.target.value as ChainName);
   };
 
-  const [originShortName, safeDomain] = useMemo(() => {
+  const originShortName = useMemo(() => {
     const chain = getChainInfoByName(origin);
-    let safeDomain;
-    switch (origin) {
-      case ChainName.moonbeam:
-      case ChainName.moonbasealpha: {
-        safeDomain = 'multisig.moonbeam.network';
-        break;
-      }
-      case ChainName.evmos:
-      case ChainName.evmostestnet: {
-        safeDomain = 'safe.evmos.org';
-        break;
-      }
-      case ChainName.harmony:
-      case ChainName.harmonytestnet: {
-        safeDomain = 'multisig.harmony.one';
-        break;
-      }
-      default: {
-        safeDomain = 'app.safe.global';
-        break;
-      }
-    }
-    return [chain?.shortName, safeDomain];
+    return chain?.shortName;
   }, [origin]);
 
   return (
@@ -111,7 +81,7 @@ export default function AppLoader() {
                 <Button
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
-                  href={`https://${safeDomain ?? 'app.safe.global'}/share/safe-app?appUrl=${encodeURIComponent(
+                  href={`https://app.safe.global/share/safe-app?appUrl=${encodeURIComponent(
                     window.location.hostname === 'localhost' ? window.location.origin : 'https://safe.mukutu.tech',
                   )}&chain=${originShortName}`}
                   disabled={!origin || !originShortName}

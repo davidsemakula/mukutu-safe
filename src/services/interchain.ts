@@ -9,29 +9,23 @@ import { ChainName, ChainType, SimpleChainInfo } from '../utils/types';
 const SUPPORTED_CHAINS: Array<string> = [
   // Mainnet
   ChainName.ethereum,
+  ChainName.arbitrum,
+  ChainName.optimism,
   ChainName.polygon,
   // Alphabetical order for the rest
-  ChainName.arbitrum,
   ChainName.avalanche,
   ChainName.bsc,
   ChainName.celo,
-  ChainName.evmos,
-  //ChainName.harmony,
-  ChainName.moonbeam,
-  ChainName.optimism,
 
   // Testnet
   ChainName.goerli,
-  ChainName.mumbai,
-  // Alphabetical order for the rest
-  ChainName.alfajores,
   ChainName.arbitrumgoerli,
-  ChainName.bsctestnet,
-  ChainName.evmostestnet,
-  ChainName.fuji,
-  //ChainName.harmonytestnet,
-  ChainName.moonbasealpha,
   ChainName.optimismgoerli,
+  ChainName.mumbai,
+  // Alphabetical order (of mainnet) for the rest
+  ChainName.fuji,
+  ChainName.bsctestnet,
+  ChainName.alfajores,
 ];
 
 export function isSupportedChain(name: string): boolean {
@@ -50,9 +44,9 @@ export function getDefaultRemoteChain(origin?: string): string {
   if (origin) {
     const originType = getChainInfoByName(origin)?.type;
     if (originType === ChainType.TESTNET) {
-      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.mumbai;
+      return origin !== ChainName.goerli ? ChainName.goerli : ChainName.arbitrumgoerli;
     }
-    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.polygon;
+    return origin !== ChainName.ethereum ? ChainName.ethereum : ChainName.arbitrum;
   }
   return '';
 }

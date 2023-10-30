@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { SafeAppData } from '@safe-global/safe-gateway-typescript-sdk';
-import { ChainSafeAppData, SimpleChainInfo } from './types';
-import { allChains, getChainInfoByName, getRelatedChains } from './chains';
+import { ChainName, ChainSafeAppData, SimpleChainInfo } from './types';
+import { allChains, getChainId, getChainInfoByName, getRelatedChains } from './chains';
 
 export const chainAgnosticApps: Array<Partial<SafeAppData>> = [
   {
@@ -29,75 +29,69 @@ export const safeSpecificApps: Array<Partial<SafeAppData>> = [
   },
 ];
 
-enum chainIds {
-  fuji = '43113',
-  goerli = '5',
-  moonbeam = '1284',
-  moonriver = '1285',
-  moonbasealpha = '1287',
-  mumbai = '80001',
+function chainNamesToIds(names: string[]): string[] {
+  return names
+    .map((name) => {
+      const id = getChainId(name);
+      return id ? id.toString() : undefined;
+    })
+    .filter(Boolean) as string[];
 }
 
 export const unofficiallySupportedApps: Array<Partial<SafeAppData>> = [
-  // https://moonbeam.network/blog/voting-snapshot/
   {
-    id: 61,
-    name: 'Snapshot',
-    chainIds: [chainIds.moonbeam, chainIds.moonriver, chainIds.moonbasealpha],
-  },
-  // https://moonbeam.network/community/projects/sushiswap/
-  {
-    id: 35,
-    name: 'Sushi',
-    chainIds: [chainIds.moonbeam, chainIds.moonriver],
+    id: 18,
+    name: 'Aave v3',
+    chainIds: chainNamesToIds([
+      ChainName.goerli,
+      ChainName.arbitrumgoerli,
+      ChainName.optimismgoerli,
+      ChainName.mumbai,
+      ChainName.fuji,
+    ]),
   },
   {
     id: 88,
     name: 'Revoke.cash',
-    chainIds: [chainIds.moonbeam, chainIds.moonriver, chainIds.moonbasealpha],
+    chainIds: chainNamesToIds([
+      ChainName.goerli,
+      ChainName.arbitrumgoerli,
+      ChainName.optimismgoerli,
+      ChainName.mumbai,
+      ChainName.fuji,
+    ]),
+  },
+  {
+    id: 141,
+    name: 'Sablier V2',
+    chainIds: chainNamesToIds([ChainName.goerli]),
   },
   {
     id: 48,
     name: 'Superfluid',
-    chainIds: [chainIds.fuji, chainIds.goerli, chainIds.mumbai],
+    chainIds: chainNamesToIds([
+      ChainName.goerli,
+      ChainName.arbitrumgoerli,
+      ChainName.optimismgoerli,
+      ChainName.mumbai,
+      ChainName.fuji,
+    ]),
   },
-  // https://www.request.finance/post/request-finance-enables-crypto-invoices-payroll-and-more-on-moonbeam
-  // https://www.dtmb.xyz/m/request-finance
   {
-    id: 37,
-    name: 'Request Finance',
-    chainIds: [chainIds.moonbeam],
+    id: 35,
+    name: 'Sushi',
+    chainIds: chainNamesToIds([ChainName.goerli, ChainName.mumbai]),
   },
-  // https://moonbeam.network/community/projects/lido/
-  // https://moonbeam.network/announcements/moonbeam-lido-liquid-staking/
-  // https://www.dtmb.xyz/m/lido
   {
-    id: 14,
-    name: 'Lido Staking',
-    chainIds: [chainIds.moonbeam, chainIds.moonriver],
-  },
-
-  /// Listed by not working
-  // https://moonbeam.network/community/projects/curve-finance/
-  // implements domain whitelist
-  {
-    id: 20,
-    name: 'Curve',
-    chainIds: [chainIds.moonbeam],
-  },
-  // https://moonbeam.network/community/projects/balancer/
-  // not clear if supports Moonbeam
-  {
-    id: 93,
-    name: 'Balancer',
-    chainIds: [chainIds.moonbeam],
-  },
-  // https://moonbeam.network/community/projects/insurace/
-  // not clear if supports Moonbeam
-  {
-    id: 56,
-    name: 'InsurAce',
-    chainIds: [chainIds.moonbeam],
+    id: 38,
+    name: 'Uniswap',
+    chainIds: chainNamesToIds([
+      ChainName.goerli,
+      ChainName.arbitrumgoerli,
+      ChainName.optimismgoerli,
+      ChainName.mumbai,
+      ChainName.fuji,
+    ]),
   },
 ];
 
@@ -150,7 +144,7 @@ export function filterAppsByChain(apps: Array<SafeAppData>, chain: string): Arra
             ) {
               const supportedRelatedChainsIds = _.intersection(
                 relatedChainIds,
-                _.uniq([...appChainIds, ...unofficialAppChainIds].map((i) => i.toString())),
+                _.uniq([...appChainIds, ...unofficialAppChainIds]),
               );
               let supportedRelatedChains: Array<SimpleChainInfo> = [];
               if (supportedRelatedChainsIds.length) {
