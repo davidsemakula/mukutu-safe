@@ -12,6 +12,10 @@ const SUPPORTED_CHAINS: Array<string> = [
   ChainName.arbitrum,
   ChainName.optimism,
   ChainName.polygon,
+  ChainName.base,
+  ChainName.gnosis,
+  ChainName.polygon_zkevm,
+  ChainName.zksync_era,
   // Alphabetical order for the rest
   ChainName.avalanche,
   ChainName.bsc,
@@ -22,6 +26,7 @@ const SUPPORTED_CHAINS: Array<string> = [
   ChainName.arbitrumgoerli,
   ChainName.optimismgoerli,
   ChainName.mumbai,
+  ChainName.basegoerli,
   // Alphabetical order (of mainnet) for the rest
   ChainName.fuji,
   ChainName.bsctestnet,

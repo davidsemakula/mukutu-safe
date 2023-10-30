@@ -5,23 +5,30 @@ export enum ChainName {
   arbitrum = 'arbitrum',
   aurora = 'aurora',
   avalanche = 'avalanche',
+  base = 'base',
   bsc = 'bsc',
   celo = 'celo',
   ethereum = 'ethereum',
   fantom = 'fantom',
+  gnosis = 'gnosis',
   optimism = 'optimism',
   polygon = 'polygon',
+  polygon_zkevm = 'polygon_zkevm',
+  zksync_era = 'zksync_era',
 
   // Testnet
   alfajores = 'alfajores',
   arbitrumgoerli = 'arbitrumgoerli',
   auroratestnet = 'auroratestnet',
+  basegoerli = 'basegoerli',
   bsctestnet = 'bsctestnet',
   fantomtestnet = 'fantomtestnet',
   fuji = 'fuji',
   goerli = 'goerli',
   mumbai = 'mumbai',
   optimismgoerli = 'optimismgoerli',
+  sepolia = 'sepolia',
+  basesepolia = 'basesepolia',
 }
 
 export enum ChainType {
