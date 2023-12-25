@@ -18,7 +18,7 @@ This app then intercepts the sendTransaction call, translates it to a call to th
 
 #### Option 1: Add Mukutu Router as a custom Safe app using a wizard
 
-- Go to [https://safe.mukutu.tech](https://safe.mukutu.tech)
+- Go to [https://mukutu.davidsemakula.com](https://mukutu.davidsemakula.com)
 - Select your origin chain and click "Go to Safe"
 - You will be redirected to the appropriate Safe web interface
 - Follow the prompts provided by the Safe web interface to access Mukutu Router for your Safe
@@ -28,7 +28,7 @@ This app then intercepts the sendTransaction call, translates it to a call to th
 - Go to the Safe web interface at [https://app.safe.global](https://app.safe.global)
 - Create your Safe if you don't have one already
 - Go to Apps -> My custom apps -> Add custom app
-- Paste the Safe app URL as https://safe.mukutu.tech
+- Paste the Safe app URL as https://mukutu.davidsemakula.com
 - You should see "Mukutu Router" as a new app
 - Install the app and try out some cross-chain transactions on supported remote chains 🎉
 

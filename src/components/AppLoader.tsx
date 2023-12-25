@@ -82,7 +82,9 @@ export default function AppLoader() {
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
                   href={`https://app.safe.global/share/safe-app?appUrl=${encodeURIComponent(
-                    window.location.hostname === 'localhost' ? window.location.origin : 'https://safe.mukutu.tech',
+                    window.location.hostname === 'localhost'
+                      ? window.location.origin
+                      : 'https://mukutu.davidsemakula.com',
                   )}&chain=${originShortName}`}
                   disabled={!origin || !originShortName}
                 >
